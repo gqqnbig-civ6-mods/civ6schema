@@ -1,0 +1,2 @@
+---@type Player[]
+Players={}

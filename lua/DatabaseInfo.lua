@@ -1,0 +1,79 @@
+---@class UnitInfo
+local UnitInfo = {}
+--- An auto-generated column, not in the actual database.
+UnitInfo.Hash=0
+
+UnitInfo.UnitType = ""
+UnitInfo.Name = ""
+UnitInfo.BaseSightRange = 0
+UnitInfo.BaseMoves = 0
+UnitInfo.Combat = 0
+UnitInfo.RangedCombat = 0
+UnitInfo.Range = 0
+UnitInfo.Bombard = 0
+UnitInfo.Domain = ""
+UnitInfo.FormationClass = ""
+UnitInfo.Cost = 0
+UnitInfo.PopulationCost = 0
+UnitInfo.FoundCity = true
+UnitInfo.FoundReligion = true
+UnitInfo.MakeTradeRoute = true
+UnitInfo.EvangelizeBelief = true
+UnitInfo.LaunchInquisition = true
+UnitInfo.RequiresInquisition = true
+UnitInfo.BuildCharges = 0
+UnitInfo.ReligiousStrength = 0
+UnitInfo.ReligionEvictPercent = 0
+UnitInfo.SpreadCharges = 0
+UnitInfo.ReligiousHealCharges = 0
+UnitInfo.ExtractsArtifacts = true
+UnitInfo.Description = ""
+UnitInfo.Flavor = ""
+UnitInfo.CanCapture = true
+UnitInfo.CanRetreatWhenCaptured = true
+UnitInfo.TraitType = ""
+UnitInfo.AllowBarbarians = true
+UnitInfo.CostProgressionModel = ""
+UnitInfo.CostProgressionParam1 = 0
+UnitInfo.PromotionClass = ""
+UnitInfo.InitialLevel = 0
+UnitInfo.NumRandomChoices = 0
+UnitInfo.PrereqTech = ""
+UnitInfo.PrereqCivic = ""
+UnitInfo.PrereqDistrict = ""
+UnitInfo.PrereqPopulation = 0
+UnitInfo.LeaderType = ""
+UnitInfo.CanTrain = true
+UnitInfo.StrategicResource = ""
+UnitInfo.PurchaseYield = ""
+UnitInfo.MustPurchase = true
+UnitInfo.Maintenance = 0
+UnitInfo.Stackable = true
+UnitInfo.AirSlots = 0
+UnitInfo.CanTargetAir = true
+UnitInfo.PseudoYieldType = ""
+UnitInfo.ZoneOfControl = true
+UnitInfo.AntiAirCombat = 0
+UnitInfo.Spy = true
+UnitInfo.WMDCapable = true
+UnitInfo.ParkCharges = 0
+UnitInfo.IgnoreMoves = true
+UnitInfo.TeamVisibility = true
+UnitInfo.ObsoleteTech = ""
+UnitInfo.ObsoleteCivic = ""
+UnitInfo.MandatoryObsoleteTech = ""
+UnitInfo.MandatoryObsoleteCivic = ""
+UnitInfo.AdvisorType = ""
+UnitInfo.EnabledByReligion = true
+UnitInfo.TrackReligion = true
+
+---@class YieldInfo
+local YieldInfo={}
+YieldInfo.Index=0
+
+YieldInfo.YieldType=""
+YieldInfo.Name=""
+YieldInfo.IconString=""
+YieldInfo.OccupiedCityChange=1.0
+YieldInfo.DefaultValue=1.0
+

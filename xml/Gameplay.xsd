@@ -1,0 +1,620 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:annotation>
+		<xs:documentation>
+			Unofficial schema for Civ 6 XML files. Created by gqqnbig
+		</xs:documentation>
+	</xs:annotation>
+
+	<xs:simpleType name="YieldType">
+		<xs:restriction>
+			<xs:enumeration value="YIELD_FOOD"/>
+			<xs:enumeration value="YIELD_PRODUCTION"/>
+			<xs:enumeration value="YIELD_GOLD"/>
+			<xs:enumeration value="YIELD_SCIENCE"/>
+			<xs:enumeration value="YIELD_CULTURE"/>
+			<xs:enumeration value="YIELD_FAITH"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="GreatPersonClassType">
+		<xs:restriction>
+			<xs:enumeration value="GREAT_PERSON_CLASS_GENERAL"/>
+			<xs:enumeration value="GREAT_PERSON_CLASS_ADMIRAL"/>
+			<xs:enumeration value="GREAT_PERSON_CLASS_ENGINEER"/>
+			<xs:enumeration value="GREAT_PERSON_CLASS_MERCHANT"/>
+			<xs:enumeration value="GREAT_PERSON_CLASS_PROPHET"/>
+			<xs:enumeration value="GREAT_PERSON_CLASS_SCIENTIST"/>
+			<xs:enumeration value="GREAT_PERSON_CLASS_WRITER"/>
+			<xs:enumeration value="GREAT_PERSON_CLASS_ARTIST"/>
+			<xs:enumeration value="GREAT_PERSON_CLASS_MUSICIAN"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TerrainType">
+		<xs:annotation>
+			<xs:documentation>The list may change.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction>
+			<xs:enumeration value="TERRAIN_GRASS"/>
+			<xs:enumeration value="TERRAIN_GRASS_HILLS"/>
+			<xs:enumeration value="TERRAIN_GRASS_MOUNTAIN"/>
+			<xs:enumeration value="TERRAIN_PLAINS"/>
+			<xs:enumeration value="TERRAIN_PLAINS_HILLS"/>
+			<xs:enumeration value="TERRAIN_PLAINS_MOUNTAIN"/>
+			<xs:enumeration value="TERRAIN_DESERT"/>
+			<xs:enumeration value="TERRAIN_DESERT_HILLS"/>
+			<xs:enumeration value="TERRAIN_DESERT_MOUNTAIN"/>
+			<xs:enumeration value="TERRAIN_TUNDRA"/>
+			<xs:enumeration value="TERRAIN_TUNDRA_HILLS"/>
+			<xs:enumeration value="TERRAIN_TUNDRA_MOUNTAIN"/>
+			<xs:enumeration value="TERRAIN_SNOW"/>
+			<xs:enumeration value="TERRAIN_SNOW_HILLS"/>
+			<xs:enumeration value="TERRAIN_SNOW_MOUNTAIN"/>
+			<xs:enumeration value="TERRAIN_COAST"/>
+			<xs:enumeration value="TERRAIN_OCEAN"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:element name="GameData">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Types" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Row" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:attribute name="Type" type="xs:string"/>
+									<xs:attribute name="Kind">
+										<xs:simpleType>
+											<xs:restriction>
+												<xs:enumeration value="KIND_TRAIT"/>
+												<xs:enumeration value="KIND_BARBARIAN_TRIBE"/>
+												<xs:enumeration value="KIND_BELIEF"/>
+												<xs:enumeration value="KIND_BUILDING"/>
+												<xs:enumeration value="KIND_CIVIC"/>
+												<xs:enumeration value="KIND_CIVILIZATION"/>
+												<xs:enumeration value="KIND_DEAL_ITEM"/>
+												<xs:enumeration value="KIND_DIFFICULTY"/>
+												<xs:enumeration value="KIND_DIPLOMATIC_STATE"/>
+												<xs:enumeration value="KIND_DIPLOMATIC_ACTION"/>
+												<xs:enumeration value="KIND_DISTRICT"/>
+												<xs:enumeration value="KIND_ERA"/>
+												<xs:enumeration value="KIND_FEATURE"/>
+												<xs:enumeration value="KIND_CAPABILITY"/>
+												<xs:enumeration value="KIND_GAMESPEED"/>
+												<xs:enumeration value="KIND_GAMESPEED_SCALING"/>
+												<xs:enumeration value="KIND_GOODY_HUT"/>
+												<xs:enumeration value="KIND_GOSSIP"/>
+												<xs:enumeration value="KIND_GOVERNMENT"/>
+												<xs:enumeration value="KIND_GREAT_PERSON_CLASS"/>
+												<xs:enumeration value="KIND_GREAT_PERSON_INDIVIDUAL"/>
+												<xs:enumeration value="KIND_GREATWORK"/>
+												<xs:enumeration value="KIND_HAPPINESS"/>
+												<xs:enumeration value="KIND_IMPROVEMENT"/>
+												<xs:enumeration value="KIND_LEADER"/>
+												<xs:enumeration value="KIND_CONTINENT"/>
+												<xs:enumeration value="KIND_MAPSIZE"/>
+												<xs:enumeration value="KIND_MODIFIER"/>
+												<xs:enumeration value="KIND_NOTIFICATION"/>
+												<xs:enumeration value="KIND_POLICY"/>
+												<xs:enumeration value="KIND_SLOT"/>
+												<xs:enumeration value="KIND_PROJECT"/>
+												<xs:enumeration value="KIND_QUEST"/>
+												<xs:enumeration value="KIND_RELIGION"/>
+												<xs:enumeration value="KIND_RESOURCE"/>
+												<xs:enumeration value="KIND_ROUTE"/>
+												<xs:enumeration value="KIND_SCORING_CATEGORY"/>
+												<xs:enumeration value="KIND_SCORING_LINE_ITEM"/>
+												<xs:enumeration value="KIND_TECH"/>
+												<xs:enumeration value="KIND_TERRAIN_CLASS"/>
+												<xs:enumeration value="KIND_TERRAIN"/>
+												<xs:enumeration value="KIND_TURNPHASE"/>
+												<xs:enumeration value="KIND_TURNMODE"/>
+												<xs:enumeration value="KIND_TURNSEGMENT"/>
+												<xs:enumeration value="KIND_TURNTIMER"/>
+												<xs:enumeration value="KIND_ABILITY"/>
+												<xs:enumeration value="KIND_UNITCOMMAND"/>
+												<xs:enumeration value="KIND_UNITOPERATION"/>
+												<xs:enumeration value="KIND_PROMOTION_CLASS"/>
+												<xs:enumeration value="KIND_PROMOTION"/>
+												<xs:enumeration value="KIND_UNIT"/>
+												<xs:enumeration value="KIND_FORMATION_CLASS"/>
+												<xs:enumeration value="KIND_DEFEAT"/>
+												<xs:enumeration value="KIND_VICTORY"/>
+												<xs:enumeration value="KIND_VICTORY_STRATEGY"/>
+												<xs:enumeration value="KIND_WMD"/>
+												<xs:enumeration value="KIND_WAR"/>
+												<xs:enumeration value="KIND_YIELD"/>
+												<xs:enumeration value="KIND_PSEUDOYIELD"/>
+												<xs:enumeration value="KIND_COLLECTION"/>
+												<xs:enumeration value="KIND_EFFECT"/>
+												<xs:enumeration value="KIND_REQUIREMENT"/>
+												<xs:enumeration value="KIND_REQUIREMENTSET"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+
+				<xs:choice maxOccurs="unbounded">
+					<xs:element name="NavigationProperties" minOccurs="0"/>
+					<xs:element name="Adjacency_YieldChanges" minOccurs="0"/>
+					<xs:element name="Agendas" minOccurs="0"/>
+					<xs:element name="AgendaPreferredLeaders" minOccurs="0"/>
+					<xs:element name="AgendaTraits" minOccurs="0"/>
+					<xs:element name="AiBuildSpecializations" minOccurs="0"/>
+					<xs:element name="AiEvents" minOccurs="0"/>
+					<xs:element name="AiFavoredItems" minOccurs="0"/>
+					<xs:element name="AiLists" minOccurs="0"/>
+					<xs:element name="AiListTypes" minOccurs="0"/>
+					<xs:element name="AiOperationDefs" minOccurs="0"/>
+					<xs:element name="AiOperationLimits" minOccurs="0"/>
+					<xs:element name="AiOperationLists" minOccurs="0"/>
+					<xs:element name="AiOperationTeams" minOccurs="0"/>
+					<xs:element name="AiOperationTypes" minOccurs="0"/>
+					<xs:element name="AiScoutUses" minOccurs="0"/>
+					<xs:element name="AiTeams" minOccurs="0"/>
+					<xs:element name="AllowedMoves" minOccurs="0"/>
+					<xs:element name="AllowedOperations" minOccurs="0"/>
+					<xs:element name="AppealHousingChanges" minOccurs="0"/>
+					<xs:element name="BarbarianAttackForces" minOccurs="0"/>
+					<xs:element name="BarbarianTribes" minOccurs="0"/>
+					<xs:element name="BarbarianTribeForces" minOccurs="0"/>
+					<xs:element name="BarbarianTribeNames" minOccurs="0"/>
+					<xs:element name="BehaviorTrees" minOccurs="0"/>
+					<xs:element name="BehaviorTreeNodes" minOccurs="0"/>
+					<xs:element name="Beliefs" minOccurs="0"/>
+					<xs:element name="BeliefClasses" minOccurs="0"/>
+					<xs:element name="BeliefModifiers" minOccurs="0"/>
+					<xs:element name="BonusMinorStartingUnits" minOccurs="0"/>
+					<xs:element name="Boosts" minOccurs="0">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="Row" maxOccurs="unbounded">
+									<xs:complexType>
+										<xs:attribute name="TechnologyType" type="xs:string"/>
+										<xs:attribute name="CivicType" type="xs:string"/>
+										<xs:attribute name="Boost" type="xs:integer" use="required"/>
+										<xs:attribute name="TriggerId" type="xs:integer" default="0"/>
+										<xs:attribute name="TriggerDescription" type="xs:string" use="required">
+											<xs:annotation>
+												<xs:documentation>Text shown in Tech/Civic tree for how to trigger this boost. It's important to set this attribute correct.</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+										<xs:attribute name="TriggerLongDescription" type="xs:string" use="required">
+											<xs:annotation>
+												<xs:documentation>Introductory text shown after the boost has been triggered</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+										<xs:attribute name="Unit1Type" type="xs:string"/>
+										<xs:attribute name="BoostClass" type="xs:string" use="required"/>
+										<xs:attribute name="Unit2Type" type="xs:string"/>
+										<xs:attribute name="BuildingType" type="xs:string"/>
+										<xs:attribute name="ImprovementType" type="xs:string"/>
+										<xs:attribute name="BoostingTechType" type="xs:string"/>
+										<xs:attribute name="ResourceType" type="xs:string"/>
+										<xs:attribute name="NumItems" type="xs:integer" default="0"/>
+										<xs:attribute name="DistrictType" type="xs:string"/>
+										<xs:attribute name="RequiresResource" type="xs:boolean" default="0"/>
+										<xs:attribute name="RequirementSetId" type="xs:string"/>
+										<xs:attribute name="GovernmentSlotType" type="xs:string"/>
+										<xs:attribute name="BoostingCivicType" type="xs:string"/>
+										<xs:attribute name="GovernmentTierType" type="xs:string"/>
+									</xs:complexType>
+								</xs:element>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="BoostHandlers" minOccurs="0"/>
+					<xs:element name="BoostNames" minOccurs="0"/>
+					<xs:element name="Buildings" minOccurs="0">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="Row" maxOccurs="unbounded">
+									<xs:complexType>
+										<xs:attribute name="BuildingType" type="xs:string" use="required">
+											<xs:annotation>
+												<xs:documentation>The type defined in Types/RowType/@Type</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+										<xs:attribute name="Name" type="xs:string" use="required">
+											<xs:annotation>
+												<xs:documentation>The name of the building, usually it's a Localized Text key.
+													The convention is LOC_BUILDING_&lt;building name&gt;_NAME
+												</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+										<xs:attribute name="PrereqTech" type="xs:string"/>
+										<xs:attribute name="PrereqCivic" type="xs:string"/>
+										<xs:attribute name="Cost" type="xs:integer" use="required"/>
+										<xs:attribute name="MaxPlayerInstances" type="xs:integer" default="-1"/>
+										<xs:attribute name="MaxWorldInstances" type="xs:integer" default="-1"/>
+										<xs:attribute name="Capital" type="xs:boolean" default="0"/>
+										<xs:attribute name="PrereqDistrict" type="xs:string"/>
+										<xs:attribute name="AdjacentDistrict" type="xs:string"/>
+										<xs:attribute name="Description" type="xs:string"/>
+										<xs:attribute name="RequiresPlacement" type="xs:boolean" default="0"/>
+										<xs:attribute name="RequiresRiver" type="xs:boolean" default="0"/>
+										<xs:attribute name="OuterDefenseHitPoints" type="xs:integer"/>
+										<xs:attribute name="Housing" type="xs:integer" default="0"/>
+										<xs:attribute name="Entertainment" type="xs:integer" default="0"/>
+										<xs:attribute name="AdjacentResource" type="xs:string"/>
+										<xs:attribute name="Coast" type="xs:boolean"/>
+										<xs:attribute name="EnabledByReligion" type="xs:boolean" default="0"/>
+										<xs:attribute name="AllowsHolyCity" type="xs:boolean" default="0"/>
+										<xs:attribute name="PurchaseYield" type="xs:string"/>
+										<xs:attribute name="MustPurchase" type="xs:boolean" default="0"/>
+										<xs:attribute name="Maintenance" type="xs:integer" default="0"/>
+										<xs:attribute name="IsWonder" type="xs:boolean" default="0"/>
+										<xs:attribute name="TraitType" type="xs:string"/>
+										<xs:attribute name="OuterDefenseStrength" type="xs:integer" default="0"/>
+										<xs:attribute name="CitizenSlots" type="xs:integer"/>
+										<xs:attribute name="MustBeLake" type="xs:boolean" default="0"/>
+										<xs:attribute name="MustNotBeLake" type="xs:boolean" default="0"/>
+										<xs:attribute name="RegionalRange" type="xs:integer" default="0"/>
+										<xs:attribute name="AdjacentToMountain" type="xs:boolean" default="0"/>
+										<xs:attribute name="ObsoleteEra" type="xs:string" default="NO_ERA"/>
+										<xs:attribute name="RequiresReligion" type="xs:boolean" default="0"/>
+										<xs:attribute name="GrantFortification" type="xs:integer" default="0"/>
+										<xs:attribute name="DefenseModifier" type="xs:integer" default="0"/>
+										<xs:attribute name="InternalOnly" type="xs:boolean" default="0"/>
+										<xs:attribute name="RequiresAdjacentRiver" type="xs:boolean" default="0"/>
+										<xs:attribute name="Quote" type="xs:string"/>
+										<xs:attribute name="QuoteAudio" type="xs:string"/>
+										<xs:attribute name="MustBeAdjacentLand" type="xs:boolean" default="0"/>
+										<xs:attribute name="AdvisorType" type="xs:string"/>
+										<xs:attribute name="AdjacentCapital" type="xs:boolean" default="0"/>
+										<xs:attribute name="AdjacentImprovement" type="xs:string"/>
+										<xs:attribute name="CityAdjacentTerrain" type="xs:string"/>
+										<xs:attribute name="UnlocksGovernmentPolicy" type="xs:boolean" default="0"/>
+										<xs:attribute name="GovernmentTierRequirement" type="xs:string"/>
+									</xs:complexType>
+								</xs:element>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="Building_CitizenYieldChanges" minOccurs="0"/>
+					<xs:element name="Building_GreatPersonPoints" minOccurs="0">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="Row" maxOccurs="unbounded">
+									<xs:complexType>
+										<xs:attribute name="BuildingType" type="xs:string" use="required"/>
+										<xs:attribute name="GreatPersonClassType" type="GreatPersonClassType"/>
+										<xs:attribute name="PointsPerTurn" type="xs:integer" use="required"/>
+									</xs:complexType>
+								</xs:element>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="Building_GreatWorks" minOccurs="0"/>
+					<xs:element name="Building_RequiredFeatures" minOccurs="0"/>
+					<xs:element name="Building_ValidFeatures" minOccurs="0"/>
+					<xs:element name="Building_ValidTerrains" minOccurs="0">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="Row" maxOccurs="unbounded">
+									<xs:complexType>
+										<xs:attribute name="BuildingType" type="xs:string" use="required"/>
+										<xs:attribute name="TerrainType" type="TerrainType" use="required"/>
+									</xs:complexType>
+								</xs:element>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="Building_YieldChanges" minOccurs="0">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="Row" maxOccurs="unbounded">
+									<xs:complexType>
+										<xs:attribute name="BuildingType" type="xs:string" use="required"/>
+										<xs:attribute name="YieldType" type="YieldType" use="required"/>
+										<xs:attribute name="YieldChange" type="xs:integer" use="required"/>
+									</xs:complexType>
+								</xs:element>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="Building_YieldDistrictCopies" minOccurs="0"/>
+					<xs:element name="Building_YieldsPerEra" minOccurs="0"/>
+					<xs:element name="BuildingModifiers" minOccurs="0"/>
+					<xs:element name="BuildingPrereqs" minOccurs="0">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="Row" maxOccurs="unbounded">
+									<xs:complexType>
+										<xs:attribute name="Building" type="xs:string" use="required"/>
+										<xs:attribute name="PrereqBuilding" type="xs:string" use="required"/>
+									</xs:complexType>
+								</xs:element>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="BuildingReplaces" minOccurs="0"/>
+					<xs:element name="Calendars" minOccurs="0"/>
+					<xs:element name="CityEvents" minOccurs="0"/>
+					<xs:element name="CityNames" minOccurs="0"/>
+					<xs:element name="Civics" minOccurs="0"/>
+					<xs:element name="CivicModifiers" minOccurs="0"/>
+					<xs:element name="CivicPrereqs" minOccurs="0"/>
+					<xs:element name="CivicQuotes" minOccurs="0"/>
+					<xs:element name="Civilizations" minOccurs="0"/>
+					<xs:element name="CivilizationCitizenNames" minOccurs="0"/>
+					<xs:element name="CivilizationInfo" minOccurs="0"/>
+					<xs:element name="CivilizationLeaders" minOccurs="0"/>
+					<xs:element name="CivilizationLevels" minOccurs="0"/>
+					<xs:element name="CivilizationTraits" minOccurs="0"/>
+					<xs:element name="CivilopediaPages" minOccurs="0"/>
+					<xs:element name="CivilopediaPageChapterHeaders" minOccurs="0"/>
+					<xs:element name="CivilopediaPageChapterParagraphs" minOccurs="0"/>
+					<xs:element name="CivilopediaPageExcludes" minOccurs="0"/>
+					<xs:element name="CivilopediaPageGroups" minOccurs="0"/>
+					<xs:element name="CivilopediaPageGroupExcludes" minOccurs="0"/>
+					<xs:element name="CivilopediaPageGroupQueries" minOccurs="0"/>
+					<xs:element name="CivilopediaPageLayouts" minOccurs="0"/>
+					<xs:element name="CivilopediaPageLayoutChapters" minOccurs="0"/>
+					<xs:element name="CivilopediaPageQueries" minOccurs="0"/>
+					<xs:element name="CivilopediaPageSearchTerms" minOccurs="0"/>
+					<xs:element name="CivilopediaPageSearchTermQueries" minOccurs="0"/>
+					<xs:element name="CivilopediaSections" minOccurs="0"/>
+					<xs:element name="CivilopediaSectionExcludes" minOccurs="0"/>
+					<xs:element name="Continents" minOccurs="0"/>
+					<xs:element name="DataTypes" minOccurs="0"/>
+					<xs:element name="DealItems" minOccurs="0"/>
+					<xs:element name="Defeats" minOccurs="0"/>
+					<xs:element name="Difficulties" minOccurs="0"/>
+					<xs:element name="DiplomacyInfo" minOccurs="0"/>
+					<xs:element name="DiplomaticActions" minOccurs="0"/>
+					<xs:element name="DiplomaticStartStates" minOccurs="0"/>
+					<xs:element name="DiplomaticStates" minOccurs="0"/>
+					<xs:element name="DiplomaticStateActions" minOccurs="0"/>
+					<xs:element name="DiplomaticStateTransitions" minOccurs="0"/>
+					<xs:element name="DiplomaticTriggers" minOccurs="0"/>
+					<xs:element name="DiplomaticTriggeredTransitions" minOccurs="0"/>
+					<xs:element name="DiplomaticTriggers_RequiredStates" minOccurs="0"/>
+					<xs:element name="DiplomaticVisibilitySources" minOccurs="0"/>
+					<xs:element name="Districts" minOccurs="0"/>
+					<xs:element name="District_Adjacencies" minOccurs="0"/>
+					<xs:element name="District_CitizenGreatPersonPoints" minOccurs="0"/>
+					<xs:element name="District_CitizenYieldChanges" minOccurs="0"/>
+					<xs:element name="District_GreatPersonPoints" minOccurs="0"/>
+					<xs:element name="District_RequiredFeatures" minOccurs="0"/>
+					<xs:element name="District_TradeRouteYields" minOccurs="0"/>
+					<xs:element name="District_ValidTerrains" minOccurs="0"/>
+					<xs:element name="DistrictModifiers" minOccurs="0"/>
+					<xs:element name="DistrictReplaces" minOccurs="0"/>
+					<xs:element name="DuplicateCivilizations" minOccurs="0"/>
+					<xs:element name="DuplicateLeaders" minOccurs="0"/>
+					<xs:element name="DynamicModifiers" minOccurs="0"/>
+					<xs:element name="Eras" minOccurs="0"/>
+					<xs:element name="EventPopupData" minOccurs="0"/>
+					<xs:element name="ExcludedAdjacencies" minOccurs="0"/>
+					<xs:element name="ExcludedDistricts" minOccurs="0"/>
+					<xs:element name="ExcludedGreatPersonClasses" minOccurs="0"/>
+					<xs:element name="ExclusiveAgendas" minOccurs="0"/>
+					<xs:element name="FavoredReligions" minOccurs="0"/>
+					<xs:element name="Features" minOccurs="0"/>
+					<xs:element name="Feature_AdjacentFeatures" minOccurs="0"/>
+					<xs:element name="Feature_AdjacentTerrains" minOccurs="0"/>
+					<xs:element name="Feature_AdjacentYields" minOccurs="0"/>
+					<xs:element name="Feature_NotAdjacentTerrains" minOccurs="0"/>
+					<xs:element name="Feature_NotNearFeatures" minOccurs="0"/>
+					<xs:element name="Feature_Removes" minOccurs="0"/>
+					<xs:element name="Feature_ValidTerrains" minOccurs="0"/>
+					<xs:element name="Feature_YieldChanges" minOccurs="0"/>
+					<xs:element name="Flavors" minOccurs="0"/>
+					<xs:element name="GameCapabilities" minOccurs="0"/>
+					<xs:element name="GameCapabilityDependencies" minOccurs="0"/>
+					<xs:element name="GameEffects" minOccurs="0"/>
+					<xs:element name="GameEffectArguments" minOccurs="0"/>
+					<xs:element name="GameModifiers" minOccurs="0"/>
+					<xs:element name="GameSpeeds" minOccurs="0"/>
+					<xs:element name="GameSpeed_Durations" minOccurs="0"/>
+					<xs:element name="GameSpeed_Scalings" minOccurs="0"/>
+					<xs:element name="GameSpeed_Turns" minOccurs="0"/>
+					<xs:element name="GlobalParameters" minOccurs="0"/>
+					<xs:element name="GoodyHuts" minOccurs="0"/>
+					<xs:element name="GoodyHutSubTypes" minOccurs="0"/>
+					<xs:element name="Gossips" minOccurs="0"/>
+					<xs:element name="Governments" minOccurs="0"/>
+					<xs:element name="Government_SlotCounts" minOccurs="0"/>
+					<xs:element name="GovernmentBonusNames" minOccurs="0"/>
+					<xs:element name="GovernmentModifiers" minOccurs="0"/>
+					<xs:element name="GovernmentSlots" minOccurs="0"/>
+					<xs:element name="GovernmentTiers" minOccurs="0"/>
+					<xs:element name="GreatPersonClasses" minOccurs="0"/>
+					<xs:element name="GreatPersonIndividuals" minOccurs="0"/>
+					<xs:element name="GreatPersonIndividualActionModifiers" minOccurs="0"/>
+					<xs:element name="GreatPersonIndividualBirthModifiers" minOccurs="0"/>
+					<xs:element name="GreatPersonIndividualIconModifiers" minOccurs="0"/>
+					<xs:element name="GreatWorks" minOccurs="0"/>
+					<xs:element name="GreatWork_ValidSubTypes" minOccurs="0"/>
+					<xs:element name="GreatWork_YieldChanges" minOccurs="0"/>
+					<xs:element name="GreatWorkObjectTypes" minOccurs="0"/>
+					<xs:element name="GreatWorkSlotTypes" minOccurs="0"/>
+					<xs:element name="Happinesses" minOccurs="0"/>
+					<xs:element name="HistoricalAgendas" minOccurs="0"/>
+					<xs:element name="HistoricRankings" minOccurs="0"/>
+					<xs:element name="Improvements" minOccurs="0"/>
+					<xs:element name="Improvement_Adjacencies" minOccurs="0"/>
+					<xs:element name="Improvement_BonusYieldChanges" minOccurs="0"/>
+					<xs:element name="Improvement_InvalidAdjacentFeatures" minOccurs="0"/>
+					<xs:element name="Improvement_Tourism" minOccurs="0"/>
+					<xs:element name="Improvement_ValidAdjacentResources" minOccurs="0"/>
+					<xs:element name="Improvement_ValidAdjacentTerrains" minOccurs="0"/>
+					<xs:element name="Improvement_ValidBuildUnits" minOccurs="0"/>
+					<xs:element name="Improvement_ValidFeatures" minOccurs="0"/>
+					<xs:element name="Improvement_ValidResources" minOccurs="0"/>
+					<xs:element name="Improvement_ValidTerrains" minOccurs="0"/>
+					<xs:element name="Improvement_YieldChanges" minOccurs="0"/>
+					<xs:element name="ImprovementModifiers" minOccurs="0"/>
+					<xs:element name="InterfaceModes" minOccurs="0"/>
+					<xs:element name="Kinds" minOccurs="0"/>
+					<xs:element name="Leaders" minOccurs="0"/>
+					<xs:element name="LeaderInfo" minOccurs="0"/>
+					<xs:element name="LeaderQuotes" minOccurs="0"/>
+					<xs:element name="LeaderTraits" minOccurs="0"/>
+					<xs:element name="LoadingInfo" minOccurs="0"/>
+					<xs:element name="MajorStartingUnits" minOccurs="0"/>
+					<xs:element name="Maps" minOccurs="0"/>
+					<xs:element name="Map_GreatPersonClasses" minOccurs="0"/>
+					<xs:element name="MapRainfalls" minOccurs="0"/>
+					<xs:element name="MapResourceDistributions" minOccurs="0"/>
+					<xs:element name="MapSeaLevels" minOccurs="0"/>
+					<xs:element name="MapStartPositions" minOccurs="0"/>
+					<xs:element name="MapTemperatures" minOccurs="0"/>
+					<xs:element name="MapWorldAges" minOccurs="0"/>
+					<xs:element name="Modifiers" minOccurs="0"/>
+					<xs:element name="ModifierArguments" minOccurs="0">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="Row" maxOccurs="unbounded">
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element name="ModifierId" type="xs:string"/>
+											<xs:element name="Name"
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="ModifierStrings" minOccurs="0"/>
+					<xs:element name="Months" minOccurs="0"/>
+					<xs:element name="MutuallyExclusiveBuildings" minOccurs="0">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="Row" maxOccurs="unbounded">
+									<xs:complexType>
+										<xs:attribute name="Building" type="xs:string" use="required"/>
+										<xs:attribute name="MutuallyExclusiveBuilding" type="xs:string" use="required"/>
+									</xs:complexType>
+								</xs:element>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="MutuallyExclusiveDistricts" minOccurs="0"/>
+					<xs:element name="NodeDataDefinitions" minOccurs="0"/>
+					<xs:element name="NodeDefinitions" minOccurs="0"/>
+					<xs:element name="Notifications" minOccurs="0"/>
+					<xs:element name="ObsoletePolicies" minOccurs="0"/>
+					<xs:element name="OpTeamRequirements" minOccurs="0"/>
+					<xs:element name="PlotEvalConditions" minOccurs="0"/>
+					<xs:element name="Policies" minOccurs="0"/>
+					<xs:element name="PolicyModifiers" minOccurs="0">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="Row" maxOccurs="unbounded">
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element name="PolicyType" type="xs:string"/>
+											<xs:element name="ModifierId" type="xs:string"/>
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="Projects" minOccurs="0"/>
+					<xs:element name="Project_GreatPersonPoints" minOccurs="0"/>
+					<xs:element name="Project_YieldConversions" minOccurs="0"/>
+					<xs:element name="ProjectCompletionModifiers" minOccurs="0"/>
+					<xs:element name="ProjectPrereqs" minOccurs="0"/>
+					<xs:element name="PseudoYields" minOccurs="0"/>
+					<xs:element name="Quests" minOccurs="0"/>
+					<xs:element name="RandomAgendas" minOccurs="0"/>
+					<xs:element name="Religions" minOccurs="0"/>
+					<xs:element name="Requirements" minOccurs="0"/>
+					<xs:element name="RequirementArguments" minOccurs="0"/>
+					<xs:element name="RequirementSetRequirements" minOccurs="0"/>
+					<xs:element name="RequirementSets" minOccurs="0"/>
+					<xs:element name="RequirementStrings" minOccurs="0"/>
+					<xs:element name="Resources" minOccurs="0"/>
+					<xs:element name="Resource_Distribution" minOccurs="0"/>
+					<xs:element name="Resource_Harvests" minOccurs="0"/>
+					<xs:element name="Resource_SeaLuxuries" minOccurs="0"/>
+					<xs:element name="Resource_SeaStrategics" minOccurs="0"/>
+					<xs:element name="Resource_TradeRouteYields" minOccurs="0"/>
+					<xs:element name="Resource_ValidFeatures" minOccurs="0"/>
+					<xs:element name="Resource_ValidTerrains" minOccurs="0"/>
+					<xs:element name="Resource_YieldChanges" minOccurs="0"/>
+					<xs:element name="Routes" minOccurs="0"/>
+					<xs:element name="Route_ValidBuildUnits" minOccurs="0"/>
+					<xs:element name="SavingTypes" minOccurs="0"/>
+					<xs:element name="ScoringCategories" minOccurs="0"/>
+					<xs:element name="ScoringLineItems" minOccurs="0"/>
+					<xs:element name="Seasons" minOccurs="0"/>
+					<xs:element name="SettlementPreferences" minOccurs="0"/>
+					<xs:element name="ShapeDefinitions" minOccurs="0"/>
+					<xs:element name="StartBiasFeatures" minOccurs="0"/>
+					<xs:element name="StartBiasResources" minOccurs="0"/>
+					<xs:element name="StartBiasRivers" minOccurs="0"/>
+					<xs:element name="StartBiasTerrains" minOccurs="0"/>
+					<xs:element name="StartEras" minOccurs="0"/>
+					<xs:element name="StartingBoostedCivics" minOccurs="0"/>
+					<xs:element name="StartingBoostedTechnologies" minOccurs="0"/>
+					<xs:element name="StartingBuildings" minOccurs="0"/>
+					<xs:element name="StartingCivics" minOccurs="0"/>
+					<xs:element name="StartingGovernments" minOccurs="0"/>
+					<xs:element name="Strategies" minOccurs="0"/>
+					<xs:element name="Strategy_Priorities" minOccurs="0"/>
+					<xs:element name="Strategy_YieldPriorities" minOccurs="0"/>
+					<xs:element name="StrategyConditions" minOccurs="0"/>
+					<xs:element name="Tags" minOccurs="0"/>
+					<xs:element name="TargetTypes" minOccurs="0"/>
+					<xs:element name="Technologies" minOccurs="0"/>
+					<xs:element name="TechnologyModifiers" minOccurs="0"/>
+					<xs:element name="TechnologyPrereqs" minOccurs="0"/>
+					<xs:element name="TechnologyQuotes" minOccurs="0"/>
+					<xs:element name="Terrains" minOccurs="0"/>
+					<xs:element name="Terrain_YieldChanges" minOccurs="0"/>
+					<xs:element name="TerrainClasses" minOccurs="0"/>
+					<xs:element name="TerrainClass_Terrains" minOccurs="0"/>
+					<xs:element name="Traits" minOccurs="0"/>
+					<xs:element name="TraitModifiers" minOccurs="0"/>
+					<xs:element name="TreeData" minOccurs="0"/>
+					<xs:element name="TriggeredBehaviorTrees" minOccurs="0"/>
+					<xs:element name="TurnPhases" minOccurs="0"/>
+					<xs:element name="TurnSegments" minOccurs="0"/>
+					<xs:element name="TurnTimers" minOccurs="0"/>
+					<xs:element name="TypeProperties" minOccurs="0"/>
+					<xs:element name="TypeTags" minOccurs="0"/>
+					<xs:element name="Units" minOccurs="0"/>
+					<xs:element name="Unit_BuildingPrereqs" minOccurs="0"/>
+					<xs:element name="Unit_RebellionTags" minOccurs="0"/>
+					<xs:element name="UnitAbilities" minOccurs="0"/>
+					<xs:element name="UnitAbilityModifiers" minOccurs="0"/>
+					<xs:element name="UnitAiInfos" minOccurs="0"/>
+					<xs:element name="UnitAiTypes" minOccurs="0"/>
+					<xs:element name="UnitCaptures" minOccurs="0"/>
+					<xs:element name="UnitCommands" minOccurs="0"/>
+					<xs:element name="UnitFormationClasses" minOccurs="0"/>
+					<xs:element name="UnitNames" minOccurs="0"/>
+					<xs:element name="UnitOperations" minOccurs="0"/>
+					<xs:element name="UnitPromotions" minOccurs="0"/>
+					<xs:element name="UnitPromotionClasses" minOccurs="0"/>
+					<xs:element name="UnitPromotionModifiers" minOccurs="0"/>
+					<xs:element name="UnitPromotionPrereqs" minOccurs="0"/>
+					<xs:element name="UnitReplaces" minOccurs="0"/>
+					<xs:element name="UnitUpgrades" minOccurs="0"/>
+					<xs:element name="Victories" minOccurs="0"/>
+					<xs:element name="Visibilities" minOccurs="0"/>
+					<xs:element name="Vocabularies" minOccurs="0"/>
+					<xs:element name="Wars" minOccurs="0"/>
+					<xs:element name="WMDs" minOccurs="0"/>
+					<xs:element name="Yields" minOccurs="0"/>
+					<xs:element name="Colors" minOccurs="0"/>
+					<xs:element name="PlayerColors" minOccurs="0"/>
+					<xs:element name="DiplomacyStatements" minOccurs="0"/>
+					<xs:element name="DiplomacySelections" minOccurs="0"/>
+					<xs:element name="DiplomacyMoodTypes" minOccurs="0"/>
+					<xs:element name="DiplomacyStatementTypes" minOccurs="0"/>
+					<xs:element name="DiplomacyStatementSubTypes" minOccurs="0"/>
+					<xs:element name="LeaderAnimations" minOccurs="0"/>
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>
