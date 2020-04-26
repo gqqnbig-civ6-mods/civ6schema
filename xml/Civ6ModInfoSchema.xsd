@@ -117,6 +117,11 @@
 		</xs:all>
 		<xs:attribute name="id" type="xs:string" default=""/>
 	</xs:complexType>
+	<xs:simpleType name="FileName">
+		<xs:restriction base="xs:string">
+			<xs:pattern value=".+\.([xX][mM][lL]|[sS][qQ][lL])"/>
+		</xs:restriction>
+	</xs:simpleType>
 
 	<xs:group name="Translations">
 		<xs:all>
@@ -292,7 +297,7 @@
 	</xs:element>
 	<xs:complexType name="FileType">
 		<xs:simpleContent>
-			<xs:extension base="xs:string">
+			<xs:extension base="FileName">
 				<xs:attribute name="Priority" type="xs:integer" default="0">
 					<xs:annotation>
 						<xs:documentation>Signed integer determining the load order of files within the component. Higher numbers load earlier.</xs:documentation>
@@ -321,7 +326,7 @@
 										</xs:sequence>
 									</xs:complexType>
 								</xs:element>
-								<xs:element name="File" minOccurs="1" maxOccurs="unbounded"/>
+								<xs:element name="File" type="FileType" minOccurs="1" maxOccurs="unbounded"/>
 							</xs:choice>
 						</xs:extension>
 					</xs:complexContent>
