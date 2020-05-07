@@ -18,7 +18,7 @@
 									<xs:attribute name="Type" type="xs:string"/>
 									<xs:attribute name="Kind">
 										<xs:simpleType>
-											<xs:restriction>
+											<xs:restriction base="xs:string">
 												<xs:enumeration value="KIND_TRAIT"/>
 												<xs:enumeration value="KIND_BARBARIAN_TRIBE"/>
 												<xs:enumeration value="KIND_BELIEF"/>
@@ -419,15 +419,30 @@
 					<xs:element name="MapStartPositions" minOccurs="0"/>
 					<xs:element name="MapTemperatures" minOccurs="0"/>
 					<xs:element name="MapWorldAges" minOccurs="0"/>
-					<xs:element name="Modifiers" minOccurs="0"/>
+					<xs:element name="Modifiers" minOccurs="0">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="Row" maxOccurs="unbounded">
+									<xs:complexType>
+										<xs:attribute name="ModifierId" type="xs:string" use="required"/>
+										<xs:attribute name="ModifierType" type="ModifierTypeType" use="required"/>
+									</xs:complexType>
+								</xs:element>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
 					<xs:element name="ModifierArguments" minOccurs="0">
 						<xs:complexType>
 							<xs:sequence>
 								<xs:element name="Row" maxOccurs="unbounded">
 									<xs:complexType>
-										<xs:sequence>
-											<xs:element name="ModifierId" type="xs:string"/>
-										</xs:sequence>
+										<xs:attribute name="ModifierId" type="xs:string" use="required"/>
+										<xs:attribute name="Name" type="ModifierArgumentNameType" use="required"/>
+										<xs:attribute name="Type" type="xs:string" default="ARGTYPE_IDENTITY"/>
+										<xs:attribute name="Value" type="xs:string" use="required"/>
+										<xs:attribute name="Extra" type="xs:string"/>
+										<xs:attribute name="SecondExtra" type="xs:string"/>
+										<xs:assert test="@Value = 'YieldType'" />
 									</xs:complexType>
 								</xs:element>
 							</xs:sequence>
@@ -521,26 +536,35 @@
 							<xs:sequence>
 								<xs:element name="Row" maxOccurs="unbounded">
 									<xs:complexType>
-										<xs:sequence>
-											<xs:element name="TechnologyType" type="xs:string"/>
-											<xs:element name="Name" type="xs:string"/>
-											<xs:element name="Cost" type="xs:integer"/>
-											<xs:element name="Repeatable" type="xs:boolean" default="0" minOccurs="0"/>
-											<xs:element name="EmbarkUnitType" type="xs:string" minOccurs="0"/>
-											<xs:element name="EmbarkAll" type="xs:boolean" default="0" minOccurs="0"/>
-											<xs:element name="Description" type="xs:string"/>
-											<xs:element name="EraType" type="TerrainType"/>
-											<xs:element name="Critical" type="xs:boolean" default="0" minOccurs="0"/>
-											<xs:element name="BarbarianFree" type="xs:boolean" default="0" minOccurs="0"/>
-											<xs:element name="UITreeRow" type="xs:integer" default="0"/>
-											<xs:element name="AdvisorType" type="xs:string"/>
-										</xs:sequence>
+										<xs:attribute name="TechnologyType" type="xs:string" use="required"/>
+										<xs:attribute name="Name" type="xs:string" use="required"/>
+										<xs:attribute name="Cost" type="xs:integer" use="required"/>
+										<xs:attribute name="Repeatable" type="xs:boolean" default="0"/>
+										<xs:attribute name="EmbarkUnitType" type="xs:string"/>
+										<xs:attribute name="EmbarkAll" type="xs:boolean" default="0"/>
+										<xs:attribute name="Description" type="xs:string" use="required"/>
+										<xs:attribute name="EraType" type="EraTypeType" use="required"/>
+										<xs:attribute name="Critical" type="xs:boolean" default="0"/>
+										<xs:attribute name="BarbarianFree" type="xs:boolean" default="0"/>
+										<xs:attribute name="UITreeRow" type="xs:integer" use="required"/>
+										<xs:attribute name="AdvisorType" type="AdvisorTypeType" use="required"/>
 									</xs:complexType>
 								</xs:element>
 							</xs:sequence>
 						</xs:complexType>
 					</xs:element>
-					<xs:element name="TechnologyModifiers" minOccurs="0"/>
+					<xs:element name="TechnologyModifiers" minOccurs="0">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="Row" maxOccurs="unbounded">
+									<xs:complexType>
+										<xs:attribute name="TechnologyType" type="xs:string" use="required"/>
+										<xs:attribute name="ModifierId" type="xs:string" use="required"/>
+									</xs:complexType>
+								</xs:element>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
 					<xs:element name="TechnologyPrereqs" minOccurs="0"/>
 					<xs:element name="TechnologyQuotes" minOccurs="0"/>
 					<xs:element name="Terrains" minOccurs="0"/>
