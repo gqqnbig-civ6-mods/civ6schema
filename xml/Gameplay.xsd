@@ -538,7 +538,7 @@
 									<xs:complexType>
 										<xs:attribute name="TechnologyType" type="xs:string" use="required"/>
 										<xs:attribute name="Name" type="xs:string" use="required"/>
-										<xs:attribute name="Cost" type="xs:integer" use="required"/>
+										<xs:attribute name="Cost" type="xs:positiveInteger" use="required"/>
 										<xs:attribute name="Repeatable" type="xs:boolean" default="0"/>
 										<xs:attribute name="EmbarkUnitType" type="xs:string"/>
 										<xs:attribute name="EmbarkAll" type="xs:boolean" default="0"/>
