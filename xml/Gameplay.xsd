@@ -5,54 +5,7 @@
 			Unofficial schema for Civ 6 XML files. Created by gqqnbig
 		</xs:documentation>
 	</xs:annotation>
-
-	<xs:simpleType name="YieldType">
-		<xs:restriction>
-			<xs:enumeration value="YIELD_FOOD"/>
-			<xs:enumeration value="YIELD_PRODUCTION"/>
-			<xs:enumeration value="YIELD_GOLD"/>
-			<xs:enumeration value="YIELD_SCIENCE"/>
-			<xs:enumeration value="YIELD_CULTURE"/>
-			<xs:enumeration value="YIELD_FAITH"/>
-		</xs:restriction>
-	</xs:simpleType>
-	<xs:simpleType name="GreatPersonClassType">
-		<xs:restriction>
-			<xs:enumeration value="GREAT_PERSON_CLASS_GENERAL"/>
-			<xs:enumeration value="GREAT_PERSON_CLASS_ADMIRAL"/>
-			<xs:enumeration value="GREAT_PERSON_CLASS_ENGINEER"/>
-			<xs:enumeration value="GREAT_PERSON_CLASS_MERCHANT"/>
-			<xs:enumeration value="GREAT_PERSON_CLASS_PROPHET"/>
-			<xs:enumeration value="GREAT_PERSON_CLASS_SCIENTIST"/>
-			<xs:enumeration value="GREAT_PERSON_CLASS_WRITER"/>
-			<xs:enumeration value="GREAT_PERSON_CLASS_ARTIST"/>
-			<xs:enumeration value="GREAT_PERSON_CLASS_MUSICIAN"/>
-		</xs:restriction>
-	</xs:simpleType>
-	<xs:simpleType name="TerrainType">
-		<xs:annotation>
-			<xs:documentation>The list may change.</xs:documentation>
-		</xs:annotation>
-		<xs:restriction>
-			<xs:enumeration value="TERRAIN_GRASS"/>
-			<xs:enumeration value="TERRAIN_GRASS_HILLS"/>
-			<xs:enumeration value="TERRAIN_GRASS_MOUNTAIN"/>
-			<xs:enumeration value="TERRAIN_PLAINS"/>
-			<xs:enumeration value="TERRAIN_PLAINS_HILLS"/>
-			<xs:enumeration value="TERRAIN_PLAINS_MOUNTAIN"/>
-			<xs:enumeration value="TERRAIN_DESERT"/>
-			<xs:enumeration value="TERRAIN_DESERT_HILLS"/>
-			<xs:enumeration value="TERRAIN_DESERT_MOUNTAIN"/>
-			<xs:enumeration value="TERRAIN_TUNDRA"/>
-			<xs:enumeration value="TERRAIN_TUNDRA_HILLS"/>
-			<xs:enumeration value="TERRAIN_TUNDRA_MOUNTAIN"/>
-			<xs:enumeration value="TERRAIN_SNOW"/>
-			<xs:enumeration value="TERRAIN_SNOW_HILLS"/>
-			<xs:enumeration value="TERRAIN_SNOW_MOUNTAIN"/>
-			<xs:enumeration value="TERRAIN_COAST"/>
-			<xs:enumeration value="TERRAIN_OCEAN"/>
-		</xs:restriction>
-	</xs:simpleType>
+	<xs:include schemaLocation="CommonTypes.xsd"/>
 
 	<xs:element name="GameData">
 		<xs:complexType>
@@ -474,7 +427,6 @@
 									<xs:complexType>
 										<xs:sequence>
 											<xs:element name="ModifierId" type="xs:string"/>
-											<xs:element name="Name"
 										</xs:sequence>
 									</xs:complexType>
 								</xs:element>
@@ -564,7 +516,30 @@
 					<xs:element name="StrategyConditions" minOccurs="0"/>
 					<xs:element name="Tags" minOccurs="0"/>
 					<xs:element name="TargetTypes" minOccurs="0"/>
-					<xs:element name="Technologies" minOccurs="0"/>
+					<xs:element name="Technologies" minOccurs="0">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="Row" maxOccurs="unbounded">
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element name="TechnologyType" type="xs:string"/>
+											<xs:element name="Name" type="xs:string"/>
+											<xs:element name="Cost" type="xs:integer"/>
+											<xs:element name="Repeatable" type="xs:boolean" default="0" minOccurs="0"/>
+											<xs:element name="EmbarkUnitType" type="xs:string" minOccurs="0"/>
+											<xs:element name="EmbarkAll" type="xs:boolean" default="0" minOccurs="0"/>
+											<xs:element name="Description" type="xs:string"/>
+											<xs:element name="EraType" type="TerrainType"/>
+											<xs:element name="Critical" type="xs:boolean" default="0" minOccurs="0"/>
+											<xs:element name="BarbarianFree" type="xs:boolean" default="0" minOccurs="0"/>
+											<xs:element name="UITreeRow" type="xs:integer" default="0"/>
+											<xs:element name="AdvisorType" type="xs:string"/>
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
 					<xs:element name="TechnologyModifiers" minOccurs="0"/>
 					<xs:element name="TechnologyPrereqs" minOccurs="0"/>
 					<xs:element name="TechnologyQuotes" minOccurs="0"/>
