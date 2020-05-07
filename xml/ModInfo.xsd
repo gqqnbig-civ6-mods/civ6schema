@@ -370,7 +370,7 @@
 										</xs:sequence>
 									</xs:complexType>
 								</xs:element>
-								<xs:element name="File" minOccurs="1" maxOccurs="unbounded"/>
+								<xs:element name="File" type="FileName" minOccurs="1" maxOccurs="unbounded"/>
 							</xs:choice>
 						</xs:extension>
 					</xs:complexContent>
