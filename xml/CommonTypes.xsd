@@ -1274,4 +1274,58 @@
 			<xs:enumeration value="MODIFIER_UNIT_GRANT_PLOT"/>
 		</xs:restriction>
 	</xs:simpleType>
+	<xs:simpleType name="BoostClassType">
+		<xs:restriction>
+			<xs:enumeration value="BOOST_TRIGGER_AIRBASE_FOREIGN_CONTINENT"/>
+			<xs:enumeration value="BOOST_TRIGGER_ARTIFACT_EXTRACTED"/>
+			<xs:enumeration value="BOOST_TRIGGER_CITY_POPULATION"/>
+			<xs:enumeration value="BOOST_TRIGGER_CLEAR_CAMP"/>
+			<xs:enumeration value="BOOST_TRIGGER_CONSTRUCT_BUILDING"/>
+			<xs:enumeration value="BOOST_TRIGGER_CREATED_NATIONAL_PARK"/>
+			<xs:enumeration value="BOOST_TRIGGER_CREATE_PANTHEON"/>
+			<xs:enumeration value="BOOST_TRIGGER_CULTURVATE_CIVIC"/>
+			<xs:enumeration value="BOOST_TRIGGER_DISCOVER_CONTINENT"/>
+			<xs:enumeration value="BOOST_TRIGGER_DISTRICT_APPEAL_LEVEL_MINIMUM_X"/>
+			<xs:enumeration value="BOOST_TRIGGER_DOW_CASUS_BELLI"/>
+			<xs:enumeration value="BOOST_TRIGGER_EMPIRE_POPULATION"/>
+			<xs:enumeration value="BOOST_TRIGGER_FIND_NATURAL_WONDER"/>
+			<xs:enumeration value="BOOST_TRIGGER_FOUND_RELIGION"/>
+			<xs:enumeration value="BOOST_TRIGGER_HAVE_AN_ALLIANCE"/>
+			<xs:enumeration value="BOOST_TRIGGER_HAVE_BUILDING_MOUNTAIN"/>
+			<xs:enumeration value="BOOST_TRIGGER_HAVE_RESEARCH_AGREEMENT"/>
+			<xs:enumeration value="BOOST_TRIGGER_HAVE_UNIT_AND_IMPROVEMENT"/>
+			<xs:enumeration value="BOOST_TRIGGER_HAVE_WONDER_PAST_X_ERA"/>
+			<xs:enumeration value="BOOST_TRIGGER_HAVE_X_ARMIES"/>
+			<xs:enumeration value="BOOST_TRIGGER_HAVE_X_BUILDINGS"/>
+			<xs:enumeration value="BOOST_TRIGGER_HAVE_X_CITIES_FOLLOWING_YOUR_RELIGION"/>
+			<xs:enumeration value="BOOST_TRIGGER_HAVE_X_CORPS"/>
+			<xs:enumeration value="BOOST_TRIGGER_HAVE_X_DISTRICTS"/>
+			<xs:enumeration value="BOOST_TRIGGER_HAVE_X_GREAT_PEOPLE"/>
+			<xs:enumeration value="BOOST_TRIGGER_HAVE_X_IMPROVEMENTS"/>
+			<xs:enumeration value="BOOST_TRIGGER_HAVE_X_LAND_UNITS"/>
+			<xs:enumeration value="BOOST_TRIGGER_HAVE_X_POLICY_SLOTS"/>
+			<xs:enumeration value="BOOST_TRIGGER_HAVE_X_THEMED_BUILDINGS"/>
+			<xs:enumeration value="BOOST_TRIGGER_HAVE_X_UNIQUE_SPECIALTY_DISTRICTS"/>
+			<xs:enumeration value="BOOST_TRIGGER_HAVE_X_WONDERS"/>
+			<xs:enumeration value="BOOST_TRIGGER_IMPROVE_SPECIFIC_RESOURCE"/>
+			<xs:enumeration value="BOOST_TRIGGER_KILL_SPECIFIC_UNIT"/>
+			<xs:enumeration value="BOOST_TRIGGER_KILL_WITH"/>
+			<xs:enumeration value="BOOST_TRIGGER_MAINTAIN_X_TRADE_ROUTES"/>
+			<xs:enumeration value="BOOST_TRIGGER_MEET_CIV"/>
+			<xs:enumeration value="BOOST_TRIGGER_MEET_X_CITY_STATES"/>
+			<xs:enumeration value="BOOST_TRIGGER_NONE_LATE_GAME_CRITICAL_TECH"/>
+			<xs:enumeration value="BOOST_TRIGGER_NUM_BARBS_KILLED"/>
+			<xs:enumeration value="BOOST_TRIGGER_NUM_CITIES">
+				<xs:annotation>
+					<xs:documentation>This trigger is only evaluated when a city is built.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="BOOST_TRIGGER_NUM_IMPROVED_TILES"/>
+			<xs:enumeration value="BOOST_TRIGGER_OWN_X_UNITS_OF_TYPE"/>
+			<xs:enumeration value="BOOST_TRIGGER_RECEIVE_DOW"/>
+			<xs:enumeration value="BOOST_TRIGGER_RESEARCH_TECH"/>
+			<xs:enumeration value="BOOST_TRIGGER_SETTLE_COAST"/>
+			<xs:enumeration value="BOOST_TRIGGER_TRAIN_UNIT"/>
+		</xs:restriction>
+	</xs:simpleType>
 </xs:schema>

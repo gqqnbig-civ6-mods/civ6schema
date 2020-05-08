@@ -142,7 +142,7 @@
 											</xs:annotation>
 										</xs:attribute>
 										<xs:attribute name="Unit1Type" type="xs:string"/>
-										<xs:attribute name="BoostClass" type="xs:string" use="required"/>
+										<xs:attribute name="BoostClass" type="BoostClassType" use="required"/>
 										<xs:attribute name="Unit2Type" type="xs:string"/>
 										<xs:attribute name="BuildingType" type="xs:string"/>
 										<xs:attribute name="ImprovementType" type="xs:string"/>
