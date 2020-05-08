@@ -123,6 +123,9 @@
 					<xs:element name="BeliefModifiers" minOccurs="0"/>
 					<xs:element name="BonusMinorStartingUnits" minOccurs="0"/>
 					<xs:element name="Boosts" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>There are many ways that a boost may be triggered, including HIGH_DIFFICULTY_FREE_CIVIC_BOOSTS, GoodyHuts, etc.</xs:documentation>
+						</xs:annotation>
 						<xs:complexType>
 							<xs:sequence>
 								<xs:element name="Row" maxOccurs="unbounded">
@@ -290,7 +293,18 @@
 					<xs:element name="CityEvents" minOccurs="0"/>
 					<xs:element name="CityNames" minOccurs="0"/>
 					<xs:element name="Civics" minOccurs="0"/>
-					<xs:element name="CivicModifiers" minOccurs="0"/>
+					<xs:element name="CivicModifiers" minOccurs="0">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="Row" maxOccurs="unbounded">
+									<xs:complexType>
+										<xs:attribute name="CivicType" type="xs:string" use="required"/>
+										<xs:attribute name="ModifierId" type="xs:string" use="required"/>
+									</xs:complexType>
+								</xs:element>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
 					<xs:element name="CivicPrereqs" minOccurs="0"/>
 					<xs:element name="CivicQuotes" minOccurs="0"/>
 					<xs:element name="Civilizations" minOccurs="0"/>
@@ -438,7 +452,7 @@
 									<xs:complexType>
 										<xs:attribute name="ModifierId" type="xs:string" use="required"/>
 										<xs:attribute name="Name" type="ModifierArgumentNameType" use="required"/>
-										<xs:attribute name="Type" type="xs:string" default="ARGTYPE_IDENTITY"/>
+										<xs:attribute name="Type" type="ModifierArgumentTypeType" default="ARGTYPE_IDENTITY"/>
 										<xs:attribute name="Value" type="xs:string" use="required"/>
 										<xs:attribute name="Extra" type="xs:string"/>
 										<xs:attribute name="SecondExtra" type="xs:string"/>
@@ -538,9 +552,26 @@
 									<xs:complexType>
 										<xs:attribute name="TechnologyType" type="xs:string" use="required"/>
 										<xs:attribute name="Name" type="xs:string" use="required"/>
-										<xs:attribute name="Cost" type="xs:positiveInteger" use="required"/>
+										<xs:attribute name="Cost" use="required">
+											<xs:annotation>
+												<xs:documentation>
+													<b>Cost must be positive AFTER speed scaling.</b> Online speed times the cost with 50%. If cost is 1, in online speed the cost will be 0.5, rounding down to 0;
+													0 will cause game crash. Therefore this schema requires Cost to be at least 2.
+													<p>Cost also determines the column of the technology in the UI.</p>
+												</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:positiveInteger">
+													<xs:minInclusive value="2" />
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
 										<xs:attribute name="Repeatable" type="xs:boolean" default="0"/>
-										<xs:attribute name="EmbarkUnitType" type="xs:string"/>
+										<xs:attribute name="EmbarkUnitType" type="xs:string">
+											<xs:annotation>
+												<xs:documentation>Allow which unit to go on board a ship.</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
 										<xs:attribute name="EmbarkAll" type="xs:boolean" default="0"/>
 										<xs:attribute name="Description" type="xs:string" use="required"/>
 										<xs:attribute name="EraType" type="EraTypeType" use="required"/>
@@ -565,7 +596,18 @@
 							</xs:sequence>
 						</xs:complexType>
 					</xs:element>
-					<xs:element name="TechnologyPrereqs" minOccurs="0"/>
+					<xs:element name="TechnologyPrereqs" minOccurs="0">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="Row" maxOccurs="unbounded">
+									<xs:complexType>
+										<xs:attribute name="Technology" type="xs:string" use="required"/>
+										<xs:attribute name="PrereqTech" type="xs:string" use="required"/>
+									</xs:complexType>
+								</xs:element>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
 					<xs:element name="TechnologyQuotes" minOccurs="0"/>
 					<xs:element name="Terrains" minOccurs="0"/>
 					<xs:element name="Terrain_YieldChanges" minOccurs="0"/>

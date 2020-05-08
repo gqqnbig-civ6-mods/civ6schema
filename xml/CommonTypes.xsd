@@ -1328,4 +1328,30 @@
 			<xs:enumeration value="BOOST_TRIGGER_TRAIN_UNIT"/>
 		</xs:restriction>
 	</xs:simpleType>
+	<xs:simpleType name="ModifierArgumentTypeType">
+		<xs:restriction>
+			<xs:enumeration value="ARGTYPE_IDENTITY"/>
+			<xs:enumeration value="LinearScaleFromDefaultHandicap">
+				<xs:annotation>
+					<xs:documentation>
+						Handicap means difficulty; default handicap means the default difficulty, ie. Prince.
+						When using this argument type, FinalValue = Value + Extra * (CurrentDifficulty - DefaultDifficulty + 1)
+
+<pre>
+&lt;Row&gt;
+	&lt;ModifierId&gt;HIGH_DIFFICULTY_COMBAT_SCALING&lt;/ModifierId&gt;
+	&lt;Name&gt;Amount&lt;/Name&gt;
+	&lt;Type&gt;LinearScaleFromDefaultHandicap&lt;/Type&gt;
+	&lt;Value&gt;-1&lt;/Value&gt;
+	&lt;Extra&gt;1&lt;/Extra&gt;
+&lt;/Row&gt;
+</pre>
+						In this example, if you are playing at Prince, the AI combat bonus is -1 + (4-4+1)*1=0;
+						if you are playing at Deity, the combat bonus is -1 + (8-4+1)*1=4.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ScaleByGameSpeed"/>
+		</xs:restriction>
+	</xs:simpleType>
 </xs:schema>
