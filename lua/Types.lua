@@ -53,22 +53,17 @@ function Player:GetCities() end
 ---@return ImprovementCollection
 function Player:GetImprovements() end
 
-
 function Player:GetUnits() end
+
+---@return TechnologyCollection
+function Player:GetTechs() end
+
 
 ---@class Treasury
 local Treasury={}
 ---@param n number can be negative
 function Treasury:ChangeGoldBalance(n) end
 
----@class CityCollection
-local CityCollection={}
----@return fun(tbl: table<number, City>):number, City
-function CityCollection:Members() end
-
---- It may return nil if the game is in the first turn, when the player is alive but no city is founded.
----@return City
-function CityCollection:GetCapitalCity() end
 
 ---@class MilitaryFormationType
 local MilitaryFormationType={}
@@ -86,10 +81,6 @@ local CityPlotManager={}
 ---@return number[] array of plot ID
 function CityPlotManager:GetPurchasedPlots(city) end
 
----@class ImprovementCollection
-local ImprovementCollection={}
----@return number[] array of plot ID
-function ImprovementCollection:GetImprovementPlots() end
 
 ---@class Deal
 local Deal={}
@@ -97,6 +88,7 @@ local Deal={}
 --- For instance, even if you forcibly add an open border agreement to player 1, the validate function
 --- will forcibly add an open border agreement to player 0.
 function Deal:Validate() end
+
 
 Types.City=City
 Types.Plot=Plot

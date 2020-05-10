@@ -16,6 +16,10 @@ Events.CityOccupationChanged={}
 Events.CityOccupationChanged.Add=function(fun) end
 Events.CityOccupationChanged.Remove=function(fun) end
 
+Events.CityAddedToMap={}
+---@param fun fun(ownerPlayerID:number, cityID:number, cityX:number, cityY:number)
+Events.CityAddedToMap.Add=function(fun) end
+Events.CityAddedToMap.Remove=function(fun) end
 
 Events.CityRemovedFromMap={}
 ---@param fun fun(playerID:number, cityID:number)

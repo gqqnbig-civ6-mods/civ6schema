@@ -4,10 +4,9 @@ GameInfo={}
 ---@type table<string, UnitInfo>
 GameInfo.Units={}
 
-
-
---function GameInfo.Units() end
-
 ---@type table<string, YieldInfo>
 GameInfo.Yields={}
-['YIELD_GOLD']
+
+--- key is TechnologyType
+---@type table<string, Technology>
+GameInfo.Technologies={}

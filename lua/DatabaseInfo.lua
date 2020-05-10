@@ -77,3 +77,18 @@ YieldInfo.IconString=""
 YieldInfo.OccupiedCityChange=1.0
 YieldInfo.DefaultValue=1.0
 
+---@class Technology
+local Technology={}
+Technology.Index=0;
+Technology.TechnologyType=""
+Technology.Name=""
+Technology.Cost=0
+Technology.Repeatable=false
+Technology.EmbarkUnitType=""
+Technology.EmbarkAll=false
+Technology.Description=""
+Technology.EraType=""
+Technology.Critical=false
+Technology.BarbarianFree=false
+Technology.UITreeRow=0
+Technology.AdvisorType=""
