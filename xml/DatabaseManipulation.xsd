@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:complexType name="UpdateElementType">
+		<xs:sequence>
+			<xs:element name="Where">
+				<xs:annotation>
+					<xs:documentation>The Where element allows all attributes allowed in the Row element.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:anyAttribute processContents="skip"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Set">
+				<xs:annotation>
+					<xs:documentation>The Set element allows all attributes allowed in the Row element.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:anyAttribute processContents="skip"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

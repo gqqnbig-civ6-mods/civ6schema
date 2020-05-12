@@ -1,5 +1,72 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:simpleType name="KindType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="KIND_TRAIT"/>
+			<xs:enumeration value="KIND_BARBARIAN_TRIBE"/>
+			<xs:enumeration value="KIND_BELIEF"/>
+			<xs:enumeration value="KIND_BUILDING"/>
+			<xs:enumeration value="KIND_CIVIC"/>
+			<xs:enumeration value="KIND_CIVILIZATION"/>
+			<xs:enumeration value="KIND_DEAL_ITEM"/>
+			<xs:enumeration value="KIND_DIFFICULTY"/>
+			<xs:enumeration value="KIND_DIPLOMATIC_STATE"/>
+			<xs:enumeration value="KIND_DIPLOMATIC_ACTION"/>
+			<xs:enumeration value="KIND_DISTRICT"/>
+			<xs:enumeration value="KIND_ERA"/>
+			<xs:enumeration value="KIND_FEATURE"/>
+			<xs:enumeration value="KIND_CAPABILITY"/>
+			<xs:enumeration value="KIND_GAMESPEED"/>
+			<xs:enumeration value="KIND_GAMESPEED_SCALING"/>
+			<xs:enumeration value="KIND_GOODY_HUT"/>
+			<xs:enumeration value="KIND_GOSSIP"/>
+			<xs:enumeration value="KIND_GOVERNMENT"/>
+			<xs:enumeration value="KIND_GREAT_PERSON_CLASS"/>
+			<xs:enumeration value="KIND_GREAT_PERSON_INDIVIDUAL"/>
+			<xs:enumeration value="KIND_GREATWORK"/>
+			<xs:enumeration value="KIND_HAPPINESS"/>
+			<xs:enumeration value="KIND_IMPROVEMENT"/>
+			<xs:enumeration value="KIND_LEADER"/>
+			<xs:enumeration value="KIND_CONTINENT"/>
+			<xs:enumeration value="KIND_MAPSIZE"/>
+			<xs:enumeration value="KIND_MODIFIER"/>
+			<xs:enumeration value="KIND_NOTIFICATION"/>
+			<xs:enumeration value="KIND_POLICY"/>
+			<xs:enumeration value="KIND_SLOT"/>
+			<xs:enumeration value="KIND_PROJECT"/>
+			<xs:enumeration value="KIND_QUEST"/>
+			<xs:enumeration value="KIND_RELIGION"/>
+			<xs:enumeration value="KIND_RESOURCE"/>
+			<xs:enumeration value="KIND_ROUTE"/>
+			<xs:enumeration value="KIND_SCORING_CATEGORY"/>
+			<xs:enumeration value="KIND_SCORING_LINE_ITEM"/>
+			<xs:enumeration value="KIND_TECH"/>
+			<xs:enumeration value="KIND_TERRAIN_CLASS"/>
+			<xs:enumeration value="KIND_TERRAIN"/>
+			<xs:enumeration value="KIND_TURNPHASE"/>
+			<xs:enumeration value="KIND_TURNMODE"/>
+			<xs:enumeration value="KIND_TURNSEGMENT"/>
+			<xs:enumeration value="KIND_TURNTIMER"/>
+			<xs:enumeration value="KIND_ABILITY"/>
+			<xs:enumeration value="KIND_UNITCOMMAND"/>
+			<xs:enumeration value="KIND_UNITOPERATION"/>
+			<xs:enumeration value="KIND_PROMOTION_CLASS"/>
+			<xs:enumeration value="KIND_PROMOTION"/>
+			<xs:enumeration value="KIND_UNIT"/>
+			<xs:enumeration value="KIND_FORMATION_CLASS"/>
+			<xs:enumeration value="KIND_DEFEAT"/>
+			<xs:enumeration value="KIND_VICTORY"/>
+			<xs:enumeration value="KIND_VICTORY_STRATEGY"/>
+			<xs:enumeration value="KIND_WMD"/>
+			<xs:enumeration value="KIND_WAR"/>
+			<xs:enumeration value="KIND_YIELD"/>
+			<xs:enumeration value="KIND_PSEUDOYIELD"/>
+			<xs:enumeration value="KIND_COLLECTION"/>
+			<xs:enumeration value="KIND_EFFECT"/>
+			<xs:enumeration value="KIND_REQUIREMENT"/>
+			<xs:enumeration value="KIND_REQUIREMENTSET"/>
+		</xs:restriction>
+	</xs:simpleType>
 	<xs:simpleType name="YieldType">
 		<xs:restriction base="xs:string">
 			<xs:enumeration value="YIELD_FOOD"/>
@@ -21,6 +88,15 @@
 			<xs:enumeration value="GREAT_PERSON_CLASS_WRITER"/>
 			<xs:enumeration value="GREAT_PERSON_CLASS_ARTIST"/>
 			<xs:enumeration value="GREAT_PERSON_CLASS_MUSICIAN"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="AttachmentTargetTypeType">
+		<xs:restriction>
+			<xs:enumeration value="GREAT_PERSON_ACTION_ATTACHMENT_TARGET_DISTRICT_IN_TILE"/>
+			<xs:enumeration value="GREAT_PERSON_ACTION_ATTACHMENT_TARGET_DISTRICT_WONDER_IN_TILE"/>
+			<xs:enumeration value="GREAT_PERSON_ACTION_ATTACHMENT_TARGET_PLAYER"/>
+			<xs:enumeration value="GREAT_PERSON_ACTION_ATTACHMENT_TARGET_UNIT_DOMAIN_MILITARY_IN_TILE"/>
+			<xs:enumeration value="GREAT_PERSON_ACTION_ATTACHMENT_TARGET_UNIT_GREATPERSON"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="TerrainType">
@@ -797,7 +873,11 @@
 			<xs:enumeration value="Amount"/>
 			<xs:enumeration value="BeliefType"/>
 			<xs:enumeration value="BelowThreshold"/>
-			<xs:enumeration value="BuildingType"/>
+			<xs:enumeration value="BuildingType">
+				<xs:annotation>
+					<xs:documentation>Value can be a comma-separated list.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
 			<xs:enumeration value="BuiltNukeValue"/>
 			<xs:enumeration value="CampToCityDistance"/>
 			<xs:enumeration value="CivicType"/>
@@ -1250,7 +1330,13 @@
 			<xs:enumeration value="MODIFIER_SINGLE_CITY_EXTRA_DISTRICT"/>
 			<xs:enumeration value="MODIFIER_SINGLE_CITY_FEATURE_ADJACENCY"/>
 			<xs:enumeration value="MODIFIER_SINGLE_CITY_GRANT_ABILITY_FOR_TRAINED_UNITS"/>
-			<xs:enumeration value="MODIFIER_SINGLE_CITY_GRANT_BUILDING_IN_CITY_IGNORE"/>
+			<xs:enumeration value="MODIFIER_SINGLE_CITY_GRANT_BUILDING_IN_CITY_IGNORE">
+				<xs:annotation>
+					<xs:documentation>Add a building to the city or district, ignoring prerequisite.
+						<p><strong><code>internalOnly</code> buildings or buildings mutually exclusive to an existing building cannot be added in this way.</strong></p>
+				</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
 			<xs:enumeration value="MODIFIER_SINGLE_CITY_GRANT_GREAT_PERSON_CLASS_IN_CITY"/>
 			<xs:enumeration value="MODIFIER_SINGLE_CITY_GRANT_PRODUCTION_IN_CITY"/>
 			<xs:enumeration value="MODIFIER_SINGLE_CITY_GRANT_RESOURCE_IN_CITY"/>

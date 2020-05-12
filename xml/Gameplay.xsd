@@ -6,6 +6,7 @@
 		</xs:documentation>
 	</xs:annotation>
 	<xs:include schemaLocation="CommonTypes.xsd"/>
+	<xs:include schemaLocation="DatabaseManipulation.xsd"/>
 
 	<xs:element name="GameData">
 		<xs:complexType>
@@ -16,75 +17,7 @@
 							<xs:element name="Row" maxOccurs="unbounded">
 								<xs:complexType>
 									<xs:attribute name="Type" type="xs:string"/>
-									<xs:attribute name="Kind">
-										<xs:simpleType>
-											<xs:restriction base="xs:string">
-												<xs:enumeration value="KIND_TRAIT"/>
-												<xs:enumeration value="KIND_BARBARIAN_TRIBE"/>
-												<xs:enumeration value="KIND_BELIEF"/>
-												<xs:enumeration value="KIND_BUILDING"/>
-												<xs:enumeration value="KIND_CIVIC"/>
-												<xs:enumeration value="KIND_CIVILIZATION"/>
-												<xs:enumeration value="KIND_DEAL_ITEM"/>
-												<xs:enumeration value="KIND_DIFFICULTY"/>
-												<xs:enumeration value="KIND_DIPLOMATIC_STATE"/>
-												<xs:enumeration value="KIND_DIPLOMATIC_ACTION"/>
-												<xs:enumeration value="KIND_DISTRICT"/>
-												<xs:enumeration value="KIND_ERA"/>
-												<xs:enumeration value="KIND_FEATURE"/>
-												<xs:enumeration value="KIND_CAPABILITY"/>
-												<xs:enumeration value="KIND_GAMESPEED"/>
-												<xs:enumeration value="KIND_GAMESPEED_SCALING"/>
-												<xs:enumeration value="KIND_GOODY_HUT"/>
-												<xs:enumeration value="KIND_GOSSIP"/>
-												<xs:enumeration value="KIND_GOVERNMENT"/>
-												<xs:enumeration value="KIND_GREAT_PERSON_CLASS"/>
-												<xs:enumeration value="KIND_GREAT_PERSON_INDIVIDUAL"/>
-												<xs:enumeration value="KIND_GREATWORK"/>
-												<xs:enumeration value="KIND_HAPPINESS"/>
-												<xs:enumeration value="KIND_IMPROVEMENT"/>
-												<xs:enumeration value="KIND_LEADER"/>
-												<xs:enumeration value="KIND_CONTINENT"/>
-												<xs:enumeration value="KIND_MAPSIZE"/>
-												<xs:enumeration value="KIND_MODIFIER"/>
-												<xs:enumeration value="KIND_NOTIFICATION"/>
-												<xs:enumeration value="KIND_POLICY"/>
-												<xs:enumeration value="KIND_SLOT"/>
-												<xs:enumeration value="KIND_PROJECT"/>
-												<xs:enumeration value="KIND_QUEST"/>
-												<xs:enumeration value="KIND_RELIGION"/>
-												<xs:enumeration value="KIND_RESOURCE"/>
-												<xs:enumeration value="KIND_ROUTE"/>
-												<xs:enumeration value="KIND_SCORING_CATEGORY"/>
-												<xs:enumeration value="KIND_SCORING_LINE_ITEM"/>
-												<xs:enumeration value="KIND_TECH"/>
-												<xs:enumeration value="KIND_TERRAIN_CLASS"/>
-												<xs:enumeration value="KIND_TERRAIN"/>
-												<xs:enumeration value="KIND_TURNPHASE"/>
-												<xs:enumeration value="KIND_TURNMODE"/>
-												<xs:enumeration value="KIND_TURNSEGMENT"/>
-												<xs:enumeration value="KIND_TURNTIMER"/>
-												<xs:enumeration value="KIND_ABILITY"/>
-												<xs:enumeration value="KIND_UNITCOMMAND"/>
-												<xs:enumeration value="KIND_UNITOPERATION"/>
-												<xs:enumeration value="KIND_PROMOTION_CLASS"/>
-												<xs:enumeration value="KIND_PROMOTION"/>
-												<xs:enumeration value="KIND_UNIT"/>
-												<xs:enumeration value="KIND_FORMATION_CLASS"/>
-												<xs:enumeration value="KIND_DEFEAT"/>
-												<xs:enumeration value="KIND_VICTORY"/>
-												<xs:enumeration value="KIND_VICTORY_STRATEGY"/>
-												<xs:enumeration value="KIND_WMD"/>
-												<xs:enumeration value="KIND_WAR"/>
-												<xs:enumeration value="KIND_YIELD"/>
-												<xs:enumeration value="KIND_PSEUDOYIELD"/>
-												<xs:enumeration value="KIND_COLLECTION"/>
-												<xs:enumeration value="KIND_EFFECT"/>
-												<xs:enumeration value="KIND_REQUIREMENT"/>
-												<xs:enumeration value="KIND_REQUIREMENTSET"/>
-											</xs:restriction>
-										</xs:simpleType>
-									</xs:attribute>
+									<xs:attribute name="Kind" type="KindType"/>
 								</xs:complexType>
 							</xs:element>
 						</xs:sequence>
@@ -129,6 +62,9 @@
 						<xs:complexType>
 							<xs:sequence>
 								<xs:element name="Row" maxOccurs="unbounded">
+									<xs:annotation>
+										<xs:documentation>One technology or civic may have multiple boosts, which are OR-relationship.</xs:documentation>
+									</xs:annotation>
 									<xs:complexType>
 										<xs:attribute name="TechnologyType" type="xs:string"/>
 										<xs:attribute name="CivicType" type="xs:string"/>
@@ -167,8 +103,9 @@
 					<xs:element name="BoostNames" minOccurs="0"/>
 					<xs:element name="Buildings" minOccurs="0">
 						<xs:complexType>
-							<xs:sequence>
-								<xs:element name="Row" maxOccurs="unbounded">
+							<xs:choice maxOccurs="unbounded">
+								<xs:element name="Update" type="UpdateElementType"/>
+								<xs:element name="Row">
 									<xs:complexType>
 										<xs:attribute name="BuildingType" type="xs:string" use="required">
 											<xs:annotation>
@@ -201,7 +138,11 @@
 										<xs:attribute name="EnabledByReligion" type="xs:boolean" default="0"/>
 										<xs:attribute name="AllowsHolyCity" type="xs:boolean" default="0"/>
 										<xs:attribute name="PurchaseYield" type="xs:string"/>
-										<xs:attribute name="MustPurchase" type="xs:boolean" default="0"/>
+										<xs:attribute name="MustPurchase" type="xs:boolean" default="0">
+											<xs:annotation>
+												<xs:documentation>You can use <code>MustPurchase="true" PurchaseYield=""</code> to achieve effect that the building can only be added by Great People or scripts.</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
 										<xs:attribute name="Maintenance" type="xs:integer" default="0"/>
 										<xs:attribute name="IsWonder" type="xs:boolean" default="0"/>
 										<xs:attribute name="TraitType" type="xs:string"/>
@@ -215,7 +156,11 @@
 										<xs:attribute name="RequiresReligion" type="xs:boolean" default="0"/>
 										<xs:attribute name="GrantFortification" type="xs:integer" default="0"/>
 										<xs:attribute name="DefenseModifier" type="xs:integer" default="0"/>
-										<xs:attribute name="InternalOnly" type="xs:boolean" default="0"/>
+										<xs:attribute name="InternalOnly" type="xs:boolean">
+											<xs:annotation>
+												<xs:documentation>If it's true, ProductionPanel.lua doesn't list the building, and players cannot build it.</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
 										<xs:attribute name="RequiresAdjacentRiver" type="xs:boolean" default="0"/>
 										<xs:attribute name="Quote" type="xs:string"/>
 										<xs:attribute name="QuoteAudio" type="xs:string"/>
@@ -228,7 +173,7 @@
 										<xs:attribute name="GovernmentTierRequirement" type="xs:string"/>
 									</xs:complexType>
 								</xs:element>
-							</xs:sequence>
+							</xs:choice>
 						</xs:complexType>
 					</xs:element>
 					<xs:element name="Building_CitizenYieldChanges" minOccurs="0"/>
@@ -393,7 +338,27 @@
 					<xs:element name="GovernmentTiers" minOccurs="0"/>
 					<xs:element name="GreatPersonClasses" minOccurs="0"/>
 					<xs:element name="GreatPersonIndividuals" minOccurs="0"/>
-					<xs:element name="GreatPersonIndividualActionModifiers" minOccurs="0"/>
+					<xs:element name="GreatPersonIndividualActionModifiers" minOccurs="0">
+						<xs:complexType>
+							<xs:choice maxOccurs="unbounded">
+								<xs:element name="Delete" maxOccurs="unbounded">
+									<xs:annotation>
+										<xs:documentation>Delete element supports all attributes allowed in the Row element. All attributes are optional here.</xs:documentation>
+									</xs:annotation>
+									<xs:complexType >
+										<xs:anyAttribute processContents="skip"/>
+									</xs:complexType>
+								</xs:element>
+								<xs:element name="Row" maxOccurs="unbounded">
+									<xs:complexType>
+										<xs:attribute name="GreatPersonIndividualType" type="xs:string" use="required"/>
+										<xs:attribute name="ModifierId" type="xs:string" use="required"/>
+										<xs:attribute name="AttachmentTargetType" type="AttachmentTargetTypeType" use="required" default="GREAT_PERSON_ACTION_ATTACHMENT_TARGET_PLAYER"/>
+									</xs:complexType>
+								</xs:element>
+							</xs:choice>
+						</xs:complexType>
+					</xs:element>
 					<xs:element name="GreatPersonIndividualBirthModifiers" minOccurs="0"/>
 					<xs:element name="GreatPersonIndividualIconModifiers" minOccurs="0"/>
 					<xs:element name="GreatWorks" minOccurs="0"/>
@@ -440,6 +405,17 @@
 									<xs:complexType>
 										<xs:attribute name="ModifierId" type="xs:string" use="required"/>
 										<xs:attribute name="ModifierType" type="ModifierTypeType" use="required"/>
+										<xs:attribute name="RunOnce" type="xs:boolean" default="0"/>
+										<xs:attribute name="NewOnly" type="xs:boolean" default="0"/>
+										<xs:attribute name="Permanent" type="xs:boolean" default="0"/>
+										<xs:attribute name="OwnerRequirementSetId" type="xs:string"/>
+										<xs:attribute name="SubjectRequirementSetId" type="xs:string"/>
+										<xs:attribute name="OwnerStackLimit" type="xs:integer"/>
+										<xs:attribute name="SubjectStackLimit" type="xs:integer">
+											<xs:annotation>
+												<xs:documentation>The same modifier can be applied multiple times to a subject.</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
 									</xs:complexType>
 								</xs:element>
 							</xs:sequence>
@@ -456,7 +432,7 @@
 										<xs:attribute name="Value" type="xs:string" use="required"/>
 										<xs:attribute name="Extra" type="xs:string"/>
 										<xs:attribute name="SecondExtra" type="xs:string"/>
-										<xs:assert test="@Value = 'YieldType'" />
+										<xs:assert test="@Value = 'YieldType'"/>
 									</xs:complexType>
 								</xs:element>
 							</xs:sequence>
@@ -555,14 +531,15 @@
 										<xs:attribute name="Cost" use="required">
 											<xs:annotation>
 												<xs:documentation>
-													<b>Cost must be positive AFTER speed scaling.</b> Online speed times the cost with 50%. If cost is 1, in online speed the cost will be 0.5, rounding down to 0;
+													<b>Cost must be positive AFTER speed scaling.</b>
+													Online speed times the cost with 50%. If cost is 1, in online speed the cost will be 0.5, rounding down to 0;
 													0 will cause game crash. Therefore this schema requires Cost to be at least 2.
 													<p>Cost also determines the column of the technology in the UI.</p>
 												</xs:documentation>
 											</xs:annotation>
 											<xs:simpleType>
 												<xs:restriction base="xs:positiveInteger">
-													<xs:minInclusive value="2" />
+													<xs:minInclusive value="2"/>
 												</xs:restriction>
 											</xs:simpleType>
 										</xs:attribute>
@@ -585,6 +562,14 @@
 						</xs:complexType>
 					</xs:element>
 					<xs:element name="TechnologyModifiers" minOccurs="0">
+						<xs:annotation>
+							<xs:appinfo></xs:appinfo>
+							<xs:documentation>
+								Attach modifiers to technologies.
+								The attached modifiers are saved in save game.
+								If you change TechnologyModifiers, you have to un-research the tech, then research it, probably via FireTuner's Player tab, then the revised modifiers will appear.
+							</xs:documentation>
+						</xs:annotation>
 						<xs:complexType>
 							<xs:sequence>
 								<xs:element name="Row" maxOccurs="unbounded">
