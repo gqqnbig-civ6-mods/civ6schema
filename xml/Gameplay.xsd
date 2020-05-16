@@ -60,8 +60,9 @@
 							<xs:documentation>There are many ways that a boost may be triggered, including HIGH_DIFFICULTY_FREE_CIVIC_BOOSTS, GoodyHuts, etc.</xs:documentation>
 						</xs:annotation>
 						<xs:complexType>
-							<xs:sequence>
-								<xs:element name="Row" maxOccurs="unbounded">
+							<xs:choice maxOccurs="unbounded">
+								<xs:element name="Update" type="UpdateElementType" />
+								<xs:element name="Row">
 									<xs:annotation>
 										<xs:documentation>One technology or civic may have multiple boosts, which are OR-relationship.</xs:documentation>
 									</xs:annotation>
@@ -96,7 +97,7 @@
 										<xs:attribute name="GovernmentTierType" type="xs:string"/>
 									</xs:complexType>
 								</xs:element>
-							</xs:sequence>
+							</xs:choice>
 						</xs:complexType>
 					</xs:element>
 					<xs:element name="BoostHandlers" minOccurs="0"/>
@@ -119,7 +120,11 @@
 												</xs:documentation>
 											</xs:annotation>
 										</xs:attribute>
-										<xs:attribute name="PrereqTech" type="xs:string"/>
+										<xs:attribute name="PrereqTech" type="xs:string">
+											<xs:annotation>
+												<xs:documentation>The tech tree will also show this building as an unlockable.</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
 										<xs:attribute name="PrereqCivic" type="xs:string"/>
 										<xs:attribute name="Cost" type="xs:integer" use="required"/>
 										<xs:attribute name="MaxPlayerInstances" type="xs:integer" default="-1"/>
@@ -223,14 +228,16 @@
 					<xs:element name="BuildingModifiers" minOccurs="0"/>
 					<xs:element name="BuildingPrereqs" minOccurs="0">
 						<xs:complexType>
-							<xs:sequence>
-								<xs:element name="Row" maxOccurs="unbounded">
+							<xs:choice maxOccurs="unbounded">
+								<xs:element name="Update" type="UpdateElementType"/>
+								<xs:element name="Delete" type="DeleteElementType"/>
+								<xs:element name="Row">
 									<xs:complexType>
 										<xs:attribute name="Building" type="xs:string" use="required"/>
 										<xs:attribute name="PrereqBuilding" type="xs:string" use="required"/>
 									</xs:complexType>
 								</xs:element>
-							</xs:sequence>
+							</xs:choice>
 						</xs:complexType>
 					</xs:element>
 					<xs:element name="BuildingReplaces" minOccurs="0"/>
@@ -341,15 +348,8 @@
 					<xs:element name="GreatPersonIndividualActionModifiers" minOccurs="0">
 						<xs:complexType>
 							<xs:choice maxOccurs="unbounded">
-								<xs:element name="Delete" maxOccurs="unbounded">
-									<xs:annotation>
-										<xs:documentation>Delete element supports all attributes allowed in the Row element. All attributes are optional here.</xs:documentation>
-									</xs:annotation>
-									<xs:complexType >
-										<xs:anyAttribute processContents="skip"/>
-									</xs:complexType>
-								</xs:element>
-								<xs:element name="Row" maxOccurs="unbounded">
+								<xs:element name="Delete" type="DeleteElementType"/>
+								<xs:element name="Row">
 									<xs:complexType>
 										<xs:attribute name="GreatPersonIndividualType" type="xs:string" use="required"/>
 										<xs:attribute name="ModifierId" type="xs:string" use="required"/>

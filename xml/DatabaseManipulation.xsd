@@ -20,4 +20,11 @@
 			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
+	<xs:complexType name="DeleteElementType">
+		<xs:annotation>
+			<xs:documentation>
+				Delete rows that match the specified attributes here. All attributes valid in the Row element are valid and optional here.</xs:documentation>
+		</xs:annotation>
+		<xs:anyAttribute processContents="skip"/>
+	</xs:complexType>
 </xs:schema>
