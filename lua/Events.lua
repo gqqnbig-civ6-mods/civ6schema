@@ -36,3 +36,10 @@ Events.PlayerEraChanged={}
 ---@param fun fun(playerId:number)
 Events.PlayerEraChanged.Add=function(fun) end
 Events.PlayerEraChanged.Remove=function(fun) end
+
+--- When a city center is attacked, this event may be raised twice. The first one is damageType=DefenseTypes.DISTRICT_GARRISON, the other for damageType=DefenseTypes.DISTRICT_OUTER.
+--- **Only in UI context**
+Events.DistrictDamageChanged={}
+---@param fun fun(playerID:number, districtID:number, damageType:DefenseType, newDamage:number, oldDamage:number)
+Events.DistrictDamageChanged.Add=function(playerID, districtID, damageType, newDamage, oldDamage) end
+Events.DistrictDamageChanged.Remove=function(fun) end

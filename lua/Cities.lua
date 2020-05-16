@@ -1,5 +1,3 @@
-require(Types)
-
 ---@type City[]
 Cities={}
 
@@ -8,3 +6,5 @@ Cities={}
 ---@return City
 ---@overload fun(plot:Plot):City
 function Cities.GetCityInPlot(x,y) end
+
+-- city add building ignores mutual exclusive.

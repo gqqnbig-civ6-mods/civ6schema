@@ -23,3 +23,11 @@ function CityCollection:GetCapitalCity() end
 local ImprovementCollection={}
 ---@return number[] array of plot ID
 function ImprovementCollection:GetImprovementPlots() end
+
+
+---@class DistrictCollection
+local DistrictCollection={}
+--- find district by ID
+---@param id number
+---@return District
+function DistrictCollection:FindID(id) end
