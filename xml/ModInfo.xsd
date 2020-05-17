@@ -180,7 +180,7 @@
 									</xs:documentation>
 								</xs:annotation>
 							</xs:element>
-							<xs:element name="AffectsSavedGames" type="xs:integer">
+							<xs:element name="AffectsSavedGames" type="xs:integer" minOccurs="0" default="1">
 								<xs:annotation>
 									<xs:documentation>
 										If the value is 1, ie. true, the mod ID will be included in save games.

@@ -423,8 +423,8 @@
 					</xs:element>
 					<xs:element name="ModifierArguments" minOccurs="0">
 						<xs:complexType>
-							<xs:sequence>
-								<xs:element name="Row" maxOccurs="unbounded">
+							<xs:choice maxOccurs="unbounded">
+								<xs:element name="Row">
 									<xs:complexType>
 										<xs:attribute name="ModifierId" type="xs:string" use="required"/>
 										<xs:attribute name="Name" type="ModifierArgumentNameType" use="required"/>
@@ -432,10 +432,9 @@
 										<xs:attribute name="Value" type="xs:string" use="required"/>
 										<xs:attribute name="Extra" type="xs:string"/>
 										<xs:attribute name="SecondExtra" type="xs:string"/>
-										<xs:assert test="@Value = 'YieldType'"/>
 									</xs:complexType>
 								</xs:element>
-							</xs:sequence>
+							</xs:choice>
 						</xs:complexType>
 					</xs:element>
 					<xs:element name="ModifierStrings" minOccurs="0"/>

@@ -31,3 +31,8 @@ local DistrictCollection={}
 ---@param id number
 ---@return District
 function DistrictCollection:FindID(id) end
+
+---@class BuildingCollection
+local BuildingCollection={}
+---@param buildingType string building type, eg. 'BUILDING_MONUMENT'
+function BuildingCollection:RemoveBuilding(buildingType) end

@@ -1,45 +1,6 @@
 Locale={}
 
----A composite format string consists of fixed text intermixed with indexed placeholders, called format items,
----that correspond to the objects in the list.
----The formatting operation yields a result string that consists of the original fixed text intermixed with
----the string representation of the objects in the list.
----
----# Square bracket handling #
----Square bracket enclosing an icon name will be replaced to the icon image by the user interface.
----`print(Locale.Lookup("+2 [ICON_GOLD]"))` still outputs `"+2 [ICON_GOLD]"`. But if the string is rendered by the UI,
----the gold icon shows up.
----
----# Curly bracket usage #
----You can load the text of another key into this text. For example
----`Locale.Lookup("Every time you build a {LOC_BUILDING_FACTORY_NAME}, you get a {LOC_CITY_STATES_ENVOYS}")` returns
----`"Every time you build a Factory, you get a Envoy"`.
----
----Sometimes you don't know if you need to use article a or an, like in the previous example, "a Envoy" doesn't sound idiomatic.
---- TODO
----
----
----You can pass in additional arguments to Locale.Lookup, and these arguments are used to format the text. For example
----`Locale.Lookup("{1_nameA} attacks {2_nameB}", "Alice", "Bob")` returns `"Alice attacks Bob"`.
----
----In this example, The fixed text is " attacks ".  The format items are {1_nameA}, whose index is 1,
----which corresponds to the object "Alice", which has a short comment "nameA" only for readability, and
----{2_nameB}, whose index is 2, which corresponds to the object "Bob", which has a short comment "nameB"
----only for readability.
----
----Locale.Lookup("{2} attacks {1}", "Bob", "Alice") functions exactly the same as before.
----
----A Format item may take a format condition, for example Locale.Lookup("{1:plural 1?man;other?men;}", 1).
----`:plural` is a predicate, which evaluate {1} to either 1 or 2.
----`1?man;other?men;` is a conditional block. If  `:plural` evaluates to 1, then output "man"; otherwise output "men".
----Therefore, Locale.Lookup("{1:plural 1?man;other?men;}", 1) returns "man".
----Similarly, Locale.Lookup("{1:plural 1?man;other?men;}", 2) returns "men"; Locale.Lookup("{1:plural 2?man;other?men;}", 1) returns "men";
----Locale.Lookup("{1:plural 3?man;other?men;}", 2) returns "men", as `:plural` never evaluates to 3.
----
----`:plural` may not work in certain languages, including zh_Hans_CN.
----
----Other possible predicates are `:gender`.
----
+--- Refer to the TextType in Text.xsd.
 ---@param textKey string Composite Format String or the key to Composite Format String. If text is a tag name found in LocalizedText, its Text will be read.
 ---@vararg any @arguments to format the text.
 function Locale.Lookup(text, args) end

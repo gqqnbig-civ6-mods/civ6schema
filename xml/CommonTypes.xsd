@@ -307,7 +307,19 @@
 			<xs:enumeration value="YieldChange"/>
 			<xs:enumeration value="YieldToBaseOn"/>
 			<xs:enumeration value="YieldToGrant"/>
-			<xs:enumeration value="YieldType"/>
+			<xs:enumeration value="YieldType">
+				<xs:annotation>
+					<xs:documentation>Value can be
+						YIELD_CULTURE,
+						YIELD_FAITH,
+						YIELD_FOOD,
+						YIELD_GOLD,
+						YIELD_PRODUCTION,
+						YIELD_SCIENCE,
+					or a comma-separated list of the aforementioned values.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
 			<xs:enumeration value="YieldTypeToGrant"/>
 			<xs:enumeration value="YieldTypeToMirror"/>
 		</xs:restriction>

@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+
+	<xs:include schemaLocation="TextTags.xsd"/>
 	<xs:simpleType name="LanguageType">
 		<xs:restriction>
 			<xs:enumeration value="de_DE"/>
@@ -15,7 +17,87 @@
 			<xs:enumeration value="zh_Hant_HK"/>
 		</xs:restriction>
 	</xs:simpleType>
-	
+	<xs:simpleType name="TextType">
+		<xs:annotation>
+			<xs:documentation>
+				<html>
+					<head>
+						<style type="text/css">
+							code {
+							border: 1px solid #ddd;
+							padding: 1px 4px;
+							border-radius: 2px;
+							background-color: #f9f9f9;
+							font-family: monospace,Courier;
+							}
+
+							code.str {
+								color:#a31515;
+							}
+						</style>
+					</head>
+					<body>
+
+						This element holds composite format string.
+
+						<p>A composite format string consists of fixed text, text placeholders, control sequences, and icon placeholders.</p>
+
+						<p>In
+							<code class="str">"Give a <span style="color:blue">[COLOR_blue]{LOC_BUILDING_FACTORY_NAME}[ENDCOLOR]</span>"
+							</code>
+							,
+							<code class="str">"Give a "</code>
+							is fixed text; <code class="str">"[COLOR_blue]"</code> and <code class="str">"[ENDCOLOR]"</code> is control sequence; <code class="str">"{LOC_BUILDING_FACTORY_NAME}"</code> is text placeholder.
+						</p>
+
+						<h1>Text Placeholders (Curly brackets)</h1>
+						Text placeholders are enclosed by curly brackets({}). There are two types of text placeholders, indexed format item and text reference item.
+
+						<h2>Indexed Format Item</h2>
+						<p>An indexed Format Item is enclosed by curly brackets and starts with a positive integer.</p>
+
+						<p>If the text of tag LOC_EXAMPLE_1 is "{1} attacks {2}",
+							LUA code <code>Locale.Lookup("LOC_EXAMPLE_1", "Alice", "Bob")</code> returns <code class="str">"Alice attacks Bob"</code>. Specifically, <code class="str">"Alice"</code> replaces <code>{1}</code>; <code class="str">"Bob"</code> replaces <code>{2}</code>.
+							Note, indexed format items start with 1.
+						</p>
+
+						<p>Comments can be appended to indexed Format Items with an underscore (_).
+							<code class="str">"{1_nameA} attacks {2_maneB}"</code> functions exactly the same as the previous example, except that nameA and maneB are, as comment, appended to the indexed format items. Comments can be arbitrary.
+						</p>
+
+						<h2>Linguistic Variations</h2>
+						<p>An indexed format item may take a format condition. Take <code>Locale.Lookup("{1:plural 1?man;other?men;}", 1)</code> as an example.</p>
+
+
+						<p>
+						<code>:plural</code> is a predicate, which evaluate <code>{1}</code> to either <code>1</code> or <code>2</code>. <code>..?man;other?men;</code> is a conditional block.
+							If <code>..</code> evaluates to <code>1</code>, then output <code class="str">"man"</code>; otherwise output <code class="str">"men"</code>.
+						Therefore, <code>Locale.Lookup("{1:plural 1?man;other?men;}", 1)</code> returns <code class="str">"man"</code>.</p>
+
+						<p>Similarly, <code>Locale.Lookup("{1:plural 1?man;other?men;}", 2)</code> returns <code class="str">"men"</code>; <code>Locale.Lookup("{1:plural 2?man;other?men;}", 1)</code> returns <code class="str">"men"</code>;
+						<code>Locale.Lookup("{1:plural 3?man;other?men;}", 2)</code> returns <code class="str">"men"</code>, as <code>:plural</code> never evaluates to <code>3</code>.</p>
+
+						<code>:plural</code> may not work in certain languages, including zh_Hans_CN.
+
+						Other possible predicates are <code>:gender</code>.
+
+
+						<h1>Control Sequences</h1>
+						Control Sequences are:
+						[COLOR_blue],
+						[ENDCOLOR],
+						[NEWLINE]
+
+						<h1>Icon Placeholders</h1>
+						Available icons are defined in Base/Assets/UI/Icons/FontIcons.xml, eg. [ICON_GOLD].
+					</body>
+				</html>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+		</xs:restriction>
+	</xs:simpleType>
+
 	<xs:element name="GameData">
 		<xs:complexType>
 			<xs:sequence>
@@ -25,7 +107,8 @@
 							<xs:element name="Row" maxOccurs="unbounded">
 								<xs:complexType>
 									<xs:sequence>
-										<xs:element name="Text" type="xs:string"/>
+										<xs:element name="Text" type="TextType">
+										</xs:element>
 									</xs:sequence>
 									<xs:attribute name="Tag" type="xs:string"/>
 									<xs:attribute name="Language" type="LanguageType"/>
@@ -34,9 +117,10 @@
 							<xs:element name="Replace" maxOccurs="unbounded">
 								<xs:complexType>
 									<xs:sequence>
-										<xs:element name="Text" type="xs:string"/>
+										<xs:element name="Text" type="TextType">
+										</xs:element>
 									</xs:sequence>
-									<xs:attribute name="Tag" type="xs:string"/>
+									<xs:attribute name="Tag" type="TagType"/>
 									<xs:attribute name="Language" type="LanguageType"/>
 								</xs:complexType>
 							</xs:element>

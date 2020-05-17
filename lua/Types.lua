@@ -28,8 +28,9 @@ end
 function City:GetGold()
 end
 ---@return number the index of Player. Use it in `Players[City:GetOwner()]`.
-function City:GetOwner()
-end
+function City:GetOwner() end
+---@return BuildingCollection
+function City:GetBuildings() end
 
 ---@class GoldStorage
 local GoldStorage = {}
