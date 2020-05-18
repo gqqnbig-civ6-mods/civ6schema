@@ -21,11 +21,12 @@ See the screenshot for details.
 
 ![](https://raw.githubusercontent.com/gqqnbig-civ6-mods/civ6schema/master/docs/find%20incorrect%20attributes.png)
 
-highlights incorrect attributes
+↑highlights incorrect attributes
 
 
 ![](https://raw.githubusercontent.com/gqqnbig-civ6-mods/civ6schema/master/docs/autocomplete%20required%20attributes.gif)
-autocomplete required attributes
+
+↑autocomplete required attributes
 
 
 ![](https://raw.githubusercontent.com/gqqnbig-civ6-mods/civ6schema/master/docs/list%20all%20tag%20names.png)
@@ -35,27 +36,27 @@ list all text tags
 
 ![](https://raw.githubusercontent.com/gqqnbig-civ6-mods/civ6schema/master/docs/list%20possible%20attribute%20values.png)
 
-list all valid values
+↑list all valid values
 
 
 ![](https://raw.githubusercontent.com/gqqnbig-civ6-mods/civ6schema/master/docs/LUA%20autocomplete.png)
 
-LUA function prompt
+↑LUA function prompt
 
 
 ![](https://raw.githubusercontent.com/gqqnbig-civ6-mods/civ6schema/master/docs/method%20documentations.png)
 
-LUA function documentations
+↑LUA function documentations
 
 
 ![](https://raw.githubusercontent.com/gqqnbig-civ6-mods/civ6schema/master/docs/detailed%20descriptions.png)
 
-Detailed explanation on certain topics
+↑Detailed explanation on certain topics
 
 
 ![](https://raw.githubusercontent.com/gqqnbig-civ6-mods/civ6schema/master/docs/LUA%20reference%20setup.png)
 
-LUA reference setup
+↑LUA reference setup
 
 # References
 
