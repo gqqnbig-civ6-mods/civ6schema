@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:simpleType name="IconSizeType">
+		<xs:restriction base="xs:positiveInteger">
+			<xs:enumeration value="256"/>
+			<xs:enumeration value="128"/>
+			<xs:enumeration value="80"/>
+			<xs:enumeration value="50"/>
+			<xs:enumeration value="38"/>
+			<xs:enumeration value="32"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:element name="GameData">
+		<xs:complexType>
+			<xs:choice maxOccurs="unbounded">
+				<xs:element name="IconTextureAtlases">
+					<xs:complexType>
+						<xs:choice maxOccurs="unbounded">
+							<xs:element name="Row">
+								<xs:complexType>
+									<xs:attribute name='Name' type="xs:string" use="required"/>
+									<xs:attribute name='IconSize' type="IconSizeType" use="required">
+										<xs:annotation>
+											<xs:documentation>The expected size of the icon file.
+												<p>If the actual icon size doesn't agree with the expected size, the game engine will not resize the icon.</p>
+											</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name='IconsPerRow' type="xs:integer" default="1"/>
+									<xs:attribute name='IconsPerColumn' type="xs:integer" default="1"/>
+									<xs:attribute name='FileName' type="xs:string" use="required"/>
+									<xs:attribute name='OffsetH' type="xs:integer" default="0"/>
+									<xs:attribute name='OffsetV' type="xs:integer" default="0"/>
+									<xs:attribute name='Baseline' type="xs:integer" default="0"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:choice>
+					</xs:complexType>
+					<xs:unique name="NameIconPrimaryKey">
+						<xs:selector xpath="Row"/>
+						<xs:field xpath="@Name"/>
+						<xs:field xpath="@IconSize"/>
+					</xs:unique>
+				</xs:element>
+				<xs:element name="IconDefinitions">
+					<xs:complexType>
+						<xs:choice maxOccurs="unbounded">
+							<xs:element name="Row">
+								<xs:complexType>
+									<xs:attribute name='Name' type="xs:string" use="required"/>
+									<xs:attribute name='Atlas' type="xs:string" use="required"/>
+									<xs:attribute name="Index" type="xs:nonNegativeInteger" default="0"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:choice>
+					</xs:complexType>
+				</xs:element>
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+
+</xs:schema>

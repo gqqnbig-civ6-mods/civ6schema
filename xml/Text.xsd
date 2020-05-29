@@ -37,9 +37,26 @@
 						</style>
 					</head>
 					<body>
+						A Text element contains one or more text form, separated by a pipe character (|). Each text form is a composite format string.
 
-						This element holds composite format string.
+						<h1>Text Forms</h1>
+<pre>&lt;Row Tag=&quot;LOC_MAN&quot;&gt;
+	&lt;Text&gt;man |men |woman |women | people&lt;/Text&gt;
+	&lt;Gender&gt;masculine |masculine |feminine |feminine | neuter&lt;/Gender&gt;
+	&lt;Plurality&gt;1 |2 |1 |2 | 20&lt;/Plurality&gt;
+&lt;/Row&gt;</pre>
 
+						<p>This example defines that man is single masculine, men is plural masculine, woman is single feminine, women is plural feminine, etc.</p>
+
+						<h2>Reference a text form</h2>
+						<p>To reference a particular plurality, use stars/asterisks (*). <code>Locale.Lookup('There are 3 {LOC_MAN*2} on the bus.')</code> returns <code class="str">There are 3 men on the bus.</code>
+							because the first form of plurality 2 is men.
+							<code>Locale.Lookup('There are 3 {LOC_MAN*20} on the bus.')</code> returns <code>There are 3 people on the bus.</code>.
+						</p>
+
+						<p>To reference a particular gender, use ...</p>
+
+						<h1>Composite Format String</h1>
 						<p>A composite format string consists of fixed text, text placeholders, control sequences, and icon placeholders.</p>
 
 						<p>In
@@ -53,6 +70,8 @@
 						<h1>Text Placeholders (Curly brackets)</h1>
 						Text placeholders are enclosed by curly brackets({}). There are two types of text placeholders, indexed format item and text reference item.
 
+						<p>Each text placeholder is called parameter in Localization.log. If Localization.log says "Failed to evaluate parameter 1.", it means the first curly bracket has something wrong.</p>
+
 						<h2>Indexed Format Item</h2>
 						<p>An indexed Format Item is enclosed by curly brackets and starts with a positive integer.</p>
 
@@ -65,6 +84,10 @@
 							<code class="str">"{1_nameA} attacks {2_maneB}"</code> functions exactly the same as the previous example, except that nameA and maneB are, as comment, appended to the indexed format items. Comments can be arbitrary.
 						</p>
 
+						<h2>Transforms</h2>
+						<h3>:lower</h3>
+						<p>Transform the text to lower case.</p>
+						<p>See also <a href="http://modiki.civfanatics.com/index.php?title=Localization_Tutorial_(Civ5)">Localization Tutorial (Civ5)</a></p>
 						<h2>Linguistic Variations</h2>
 						<p>An indexed format item may take a format condition. Take <code>Locale.Lookup("{1:plural 1?man;other?men;}", 1)</code> as an example.</p>
 
@@ -102,9 +125,12 @@
 		<xs:complexType>
 			<xs:sequence>
 				<xs:element name="LocalizedText">
+					<xs:annotation>
+						<xs:documentation>Note, changes to LocalizedText do not appear in DebugLocalization.sqlite, which only contains the base game text.</xs:documentation>
+					</xs:annotation>
 					<xs:complexType>
-						<xs:choice>
-							<xs:element name="Row" maxOccurs="unbounded">
+						<xs:choice maxOccurs="unbounded">
+							<xs:element name="Row">
 								<xs:complexType>
 									<xs:sequence>
 										<xs:element name="Text" type="TextType">
@@ -114,14 +140,14 @@
 									<xs:attribute name="Language" type="LanguageType"/>
 								</xs:complexType>
 							</xs:element>
-							<xs:element name="Replace" maxOccurs="unbounded">
+							<xs:element name="Replace">
 								<xs:complexType>
 									<xs:sequence>
-										<xs:element name="Text" type="TextType">
-										</xs:element>
+										<xs:element name="Text" type="TextType"/>
+										<xs:element name="Plurality" type="xs:string" minOccurs="0" />
 									</xs:sequence>
-									<xs:attribute name="Tag" type="TagType"/>
-									<xs:attribute name="Language" type="LanguageType"/>
+									<xs:attribute name="Tag" type="TagType" use="required"/>
+									<xs:attribute name="Language" type="LanguageType" use="required"/>
 								</xs:complexType>
 							</xs:element>
 						</xs:choice>
